@@ -111,3 +111,10 @@ buildNumber.properties
 
 # Common working directory
 run/
+
+
+# added by nalo because why not
+
+.classpath
+.project
+.settings/
