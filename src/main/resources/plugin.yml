@@ -1,0 +1,20 @@
+name: UHC_Commando
+version: ${project.version}
+main: com.commando.uhc_commando.UHC_Commando
+api-version: 1.16
+commands:
+  Alert:
+    description: Permet de crée une Alerte
+    usage: /alert <message>
+    permission: perm.use
+  Rule:
+    description: Règle du Commando UHC
+    usage: /rule <1>... <?>
+  Config:
+    description: Permet de préparer les teams
+    usage: /config
+    permission: perm.use
+  Start:
+    description: Permet de le lancement ou l'arrêt de la partie
+    usage: /start
+    permission: perm.use
