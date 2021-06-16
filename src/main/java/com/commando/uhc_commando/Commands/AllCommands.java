@@ -1,5 +1,7 @@
 package com.commando.uhc_commando.Commands;
 
+import com.commando.uhc_commando.utility.ConfigInventory;
+
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,9 +24,6 @@ public class AllCommands implements CommandExecutor {
         
         if ("rule".equalsIgnoreCase(command.getName())) {
             return rule(sender, args);
-        }
-        if ("config".equalsIgnoreCase(command.getName()) && sender instanceof Player && sender.isOp()) {
-            return config(sender);
         }
 
         if ("start".equalsIgnoreCase(command.getName()) && sender.isOp()) {
@@ -59,22 +58,6 @@ public class AllCommands implements CommandExecutor {
             default:
                 return false;
         }
-    }
-
-    // TODO to edit
-    public boolean config(CommandSender sender) {
-        ItemStack chestteam = new ItemStack(Material.CHEST, 1);
-        ItemMeta chest = chestteam.getItemMeta();
-        chest.setDisplayName("§6Configureur");
-        chestteam.setItemMeta(chest);
-        for(Player p : Bukkit.getOnlinePlayers()) {
-            if (p.isOp()){
-                Inventory inventory = p.getInventory();
-                inventory.clear();
-                p.getInventory().addItem(chestteam);
-            }
-        }
-        return true;
     }
     
     public boolean start() {

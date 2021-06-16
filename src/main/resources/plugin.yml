@@ -10,10 +10,6 @@ commands:
   Rule:
     description: Règle du Commando UHC
     usage: /rule <1>... <?>
-  Config:
-    description: Permet de préparer les teams
-    usage: /config
-    permission: perm.use
   Start:
     description: Permet de le lancement ou l'arrêt de la partie
     usage: /start

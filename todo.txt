@@ -8,10 +8,15 @@
 
 - Scoreboard
 
-- Commande Config
+- Config :
+    - Set the size of the border
+    - PvP timer / Border timer
+    - Disable some item : (notch apple, potion II, potion, strenght potion, fishing rod/snowball/egg, flame, fire aspect, lava, horse)
+    - Nether On / Off
+    - 
 
-- Si partie déjà démarée -> joueur en spectateur
- 
+- Si partie déjà démarrée -> joueur en spectateur
+
 - Fin de partie quand il ne reste plus qu'une team en vie
 
 {Pour le moment rien de plus}
