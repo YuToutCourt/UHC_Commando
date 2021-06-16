@@ -1,16 +1,19 @@
 name: UHC_Commando
 version: ${project.version}
 main: com.commando.uhc_commando.UHC_Commando
-api-version: 1.16
 commands:
-  Alert:
-    description: Permet de crée une Alerte
+  alert:
+    description: Create a broadcast message
     usage: /alert <message>
     permission: perm.use
-  Rule:
-    description: Règle du Commando UHC
+  rule:
+    description: Rules of the UHC
     usage: /rule <1>... <?>
-  Start:
-    description: Permet de le lancement ou l'arrêt de la partie
+  start:
+    description: Start the game
     usage: /start
+    permission: perm.use
+  createSpawn:
+    description: Create the spawn plateform
+    usage: /createSpawn
     permission: perm.use

@@ -1,7 +1,6 @@
 package com.commando.uhc_commando.Commands;
 
-import com.commando.uhc_commando.utility.ConfigInventory;
-
+import com.commando.uhc_commando.UHC_Commando;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,7 +13,13 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class AllCommands implements CommandExecutor {
-    
+
+    private UHC_Commando main;
+
+    public AllCommands(UHC_Commando uhc){
+        this.main = uhc;
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -28,6 +33,10 @@ public class AllCommands implements CommandExecutor {
 
         if ("start".equalsIgnoreCase(command.getName()) && sender.isOp()) {
             return start();
+        }
+
+        if("createSpawn".equalsIgnoreCase(command.getName()) && sender instanceof Player && sender.isOp()) {
+            return createSpawn();
         }
 
         return false;
@@ -81,6 +90,37 @@ public class AllCommands implements CommandExecutor {
             inv.addItem(new ItemStack(Material.COOKED_BEEF, 64));
         }
         world.setDifficulty(Difficulty.HARD);
+        this.main.START = true;
+        for(Player p : Bukkit.getOnlinePlayers())
+            this.main.players.add(p.getUniqueId());
+
+        return true;
+    }
+
+    public boolean createSpawn(CommandSender sender){
+        Location spawn = Bukkit.getWorld("world").getSpawnLocation();
+
+        Player player = (Player) sender;
+        GameMode gm = player.getGameMode();
+        player.setGameMode(GameMode.CREATIVE);
+        player.teleport(spawn);
+
+        String createCube = "fill " + (spawn.getBlockX() - 10) + " " + (spawn.getBlockY() - 1) + " " + (spawn.getBlockZ() - 10);
+        createCube += " " + (spawn.getBlockX() + 10) + " " + (spawn.getBlockY() + 4) + " " + (spawn.getBlockZ() + 10);
+        createCube += " minecraft:barrier";
+    
+        String carveCube = "fill " + (spawn.getBlockX() - 9) + " " + (spawn.getBlockY()) + " " + (spawn.getBlockZ() - 9);
+        carveCube += " " + (spawn.getBlockX() + 9) + " " + (spawn.getBlockY() + 3) + " " + (spawn.getBlockZ() + 9);
+        carveCube += " minecraft:air";
+
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), createCube);
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), carveCube);
+
+        for(Player p : Bukkit.getOnlinePlayers()){
+            p.teleport(spawn);
+        }
+
+        player.setGameMode(gm);
         return true;
     }
 }

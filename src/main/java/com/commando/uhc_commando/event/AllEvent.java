@@ -28,6 +28,12 @@ public class AllEvent implements Listener {
     public void playerJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
         event.setJoinMessage("§7[§3+§7] " + player.getDisplayName());
+        if(!this.main.START) {
+            player.teleport(Bukkit.getWorld("world").getSpawnLocation());
+        } else {
+            if(!this.main.players.contains(player.getUniqueId()))
+                player.setGameMode(GameMode.SPECTATOR);
+        }
     }
 
     @EventHandler
