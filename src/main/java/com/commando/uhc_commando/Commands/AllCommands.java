@@ -8,7 +8,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -36,7 +35,7 @@ public class AllCommands implements CommandExecutor {
         }
 
         if("createSpawn".equalsIgnoreCase(command.getName()) && sender instanceof Player && sender.isOp()) {
-            return createSpawn();
+            return createSpawn(sender);
         }
 
         return false;
