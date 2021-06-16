@@ -11,13 +11,11 @@ public final class UHC_Commando extends JavaPlugin {
     public void onEnable() {
         Bukkit.broadcastMessage("§a-------- Commando are ready ! ---------");
         System.out.println("-------- Commando are ready ! ---------");
-        getCommand("Alert").setExecutor(new AllCommands());
-        getCommand("Rule").setExecutor(new AllCommands());
-        getCommand("Config").setExecutor(new AllCommands());
-        getCommand("Start").setExecutor(new AllCommands());
-        getServer().getPluginManager().registerEvents(new AllEvent(this),this);
-
-
+        this.getCommand("Alert").setExecutor(new AllCommands());
+        this.getCommand("Rule").setExecutor(new AllCommands());
+        this.getCommand("Config").setExecutor(new AllCommands());
+        this.getCommand("Start").setExecutor(new AllCommands());
+        this.getServer().getPluginManager().registerEvents(new AllEvent(this),this);
     }
 
     @Override

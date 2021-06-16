@@ -1,0 +1,17 @@
+- Faire un système de team (minecraft teams)
+
+- Système de hiérarchie dans la team et pouvoir voir l'inventaire des parties inférieures
+
+- Join team on death
+
+- Bordure
+
+- Scoreboard
+
+- Commande Config
+
+- Si partie déjà démarée -> joueur en spectateur
+ 
+- Fin de partie quand il ne reste plus qu'une team en vie
+
+{Pour le moment rien de plus}

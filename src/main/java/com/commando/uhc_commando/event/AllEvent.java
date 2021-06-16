@@ -7,16 +7,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerChatEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.concurrent.TimeUnit;
 
 public class AllEvent implements Listener {
 
@@ -26,22 +22,22 @@ public class AllEvent implements Listener {
         this.main = uhc;
     }
 
-    // ############ Event that is realated with the CHAT in game #################
+    // ############ Events that are related with the CHAT in game #################
 
     @EventHandler
-    public void PlayerJoin(PlayerJoinEvent event){
+    public void playerJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
         event.setJoinMessage("§7[§3+§7] " + player.getDisplayName());
     }
 
     @EventHandler
-    public void PlayerLeave(PlayerQuitEvent event){
+    public void playerLeave(PlayerQuitEvent event){
         Player player = event.getPlayer();
         event.setQuitMessage("§7[§4-§7] " + player.getDisplayName());
     }
-    @SuppressWarnings("deprecated")
+
     @EventHandler
-    public void OnMessage(PlayerChatEvent event){
+    public void onMessage(AsyncPlayerChatEvent event){
         Player player = event.getPlayer();
         String message = event.getMessage();
         event.setFormat("<- "+player.getDisplayName()+" -> "+message);
@@ -50,16 +46,14 @@ public class AllEvent implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) throws InterruptedException {
         World world = Bukkit.getWorld("world");
-        Player playerKiller = event.getEntity().getKiller();
         Player playerDeath = event.getEntity();
-        if (!(playerKiller instanceof Player)){
-            event.setDeathMessage("§c§l† " + playerDeath.getDisplayName()+ " est mort PVE comme une merde §c§l†");
+        Player playerKiller = playerDeath.getKiller();
+        if (!(playerKiller instanceof Player)) {
+            event.setDeathMessage("§c§l† " + playerDeath.getDisplayName()+ " died from PVE §c§l†");
             world.playSound(playerDeath.getLocation(), Sound.ZOMBIE_REMEDY, 1000.0F, 1.0F);
             playerDeath.setGameMode(GameMode.SPECTATOR);
-
-        }
-        else{
-            event.setDeathMessage("§c§l† " + playerDeath.getDisplayName()+ " à est tomber au combat contre "+ playerKiller.getPlayerListName() +" §c§l†");
+        } else {
+            event.setDeathMessage("§c§l† " + playerDeath.getDisplayName()+ " was killed by " + playerKiller.getPlayerListName() + " §c§l†");
             world.playSound(playerDeath.getLocation(), Sound.ZOMBIE_REMEDY, 1000.0F, 1.0F);
             //TODO
             /*
@@ -72,31 +66,8 @@ public class AllEvent implements Listener {
         }
     }
 
-    // ############# Event for the configure commande ###############
 
-    @EventHandler
-    public void onClickChest(PlayerInteractEvent event){
-
-        Player player = event.getPlayer();
-        ItemStack it = event.getItem();
-        if(it == null){
-            return;
-        }
-        if (it.getType() == Material.CHEST && it.hasItemMeta() && it.getItemMeta().hasDisplayName() && it.getItemMeta().getDisplayName().equalsIgnoreCase("§6Configureur")){
-            Inventory inv = Bukkit.createInventory(null, 45, "§6Configureur");
-            ItemStack glass = new ItemStack(Material.STAINED_GLASS_PANE,1, (byte)8);
-            for(int i=0;i<10;i++)
-                inv.setItem(i,glass);
-            for(int i=35;i<45;i++)
-                inv.setItem(i,glass);
-            for(int i=17;i<=26;i+=9)
-                inv.setItem(i,glass);
-            for(int i=18;i<=27;i+=9)
-                inv.setItem(i,glass);
-            player.openInventory(inv);
-        }
-
-    }
+    //TODO A modifier
     @EventHandler
     public void onClick(InventoryClickEvent event){
         Inventory inv = event.getInventory();
@@ -106,7 +77,5 @@ public class AllEvent implements Listener {
         if(inv.getName().equalsIgnoreCase("§6Configureur")){
             event.setCancelled(true);
         }
-
-
     }
 }
