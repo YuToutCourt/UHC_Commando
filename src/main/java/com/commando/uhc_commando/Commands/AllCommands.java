@@ -97,7 +97,7 @@ public class AllCommands implements CommandExecutor {
     }
 
     public boolean createSpawn(CommandSender sender){
-        Location spawn = Bukkit.getWorld("world").getSpawnLocation();
+        Location spawn = new Location(Bukkit.getWorld("world"), this.main.CONFIG.getInt("Spawn.x"), this.main.CONFIG.getInt("Spawn.y"), this.main.CONFIG.getInt("Spawn.z"));
 
         Player player = (Player) sender;
         GameMode gm = player.getGameMode();
