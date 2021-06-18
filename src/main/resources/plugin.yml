@@ -17,3 +17,6 @@ commands:
     description: Create the spawn plateform
     usage: /createSpawn
     permission: perm.use
+  join:
+    description: Join a team
+    usage: /join <team>

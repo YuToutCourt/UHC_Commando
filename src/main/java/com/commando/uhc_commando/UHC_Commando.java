@@ -11,6 +11,7 @@ import com.commando.uhc_commando.Commands.StartCommand;
 import com.commando.uhc_commando.Events.ChatEvents;
 import com.commando.uhc_commando.Events.DeathEvents;
 import com.commando.uhc_commando.Events.PlayerEvents;
+import com.commando.uhc_commando.Teams.Team;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -34,7 +35,7 @@ public final class UHC_Commando extends JavaPlugin {
 
         Bukkit.broadcastMessage("§a-------- Commando are ready ! ---------");
         System.out.println("-------- Commando are ready ! ---------");
-        
+
         this.getCommand("alert").setExecutor(new AlertCommand());
         this.getCommand("rule").setExecutor(new RuleCommand());
         this.getCommand("start").setExecutor(new StartCommand(this));
@@ -61,10 +62,13 @@ public final class UHC_Commando extends JavaPlugin {
         world.getWorldBorder().setCenter(world.getSpawnLocation());
         world.getWorldBorder().setSize(CONFIG.getInt("Border.StartSize"));
 
+        for(Team team : Team.teams) {
+            team.empty();
+        }
+
         /*
          * TODO
-         * reset timers
-         * reset teams
+         * reset timer
          * 
          */
     }

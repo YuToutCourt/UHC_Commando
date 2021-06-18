@@ -26,8 +26,8 @@ public class TimerTask extends BukkitRunnable {
 		}
 		
 	}
-	
-	private void updateBoard() { // TODO Board
+
+    private void updateBoard() { // TODO Board
         for(FastBoard board : this.main.boards) {
             board.updateLines();
         }
