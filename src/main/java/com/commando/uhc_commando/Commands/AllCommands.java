@@ -74,7 +74,7 @@ public class AllCommands implements CommandExecutor {
         world.setTime(0);
         Bukkit.broadcastMessage("§l> [SERVEUR] §cPréparation au lancement du §a§Commando UHC ... ");
         // TODO alternative ?
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"spreadplayers 0 0 10 200 false @a"); //x z DistanceEntreChaquePlayer MaxRangeSurLaTp team?
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spreadplayers 0 0 10 200 false @a"); //x z DistanceEntreChaquePlayer MaxRangeSurLaTp team?
         for(Player player : Bukkit.getOnlinePlayers()) {
             for(PotionEffect effect : player.getActivePotionEffects()) {
                 player.removePotionEffect(effect.getType());
@@ -97,7 +97,7 @@ public class AllCommands implements CommandExecutor {
     }
 
     public boolean createSpawn(CommandSender sender){
-        Location spawn = new Location(Bukkit.getWorld("world"), this.main.CONFIG.getInt("Spawn.x"), this.main.CONFIG.getInt("Spawn.y"), this.main.CONFIG.getInt("Spawn.z"));
+        Location spawn = Bukkit.getWorld("world").getSpawnLocation();
 
         Player player = (Player) sender;
         GameMode gm = player.getGameMode();

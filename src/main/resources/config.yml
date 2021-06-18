@@ -36,7 +36,7 @@ ProjectilesKnockback: false # Allow or not fishing rod, snowball and eggs knockb
 AllowNether: true # Allow or not the nether
 AllowHorse: true # Allow or not horses
 FireAndFlame: true # Allow or not fire aspect and flame enchantments
-CutClean: false # Allow or not the scenario cutClean
+CutClean: false # Enable or not the Cut Clean scenario (autosmelting items)
 
 Teams:
   RandomTeam: true # Generates random team or not

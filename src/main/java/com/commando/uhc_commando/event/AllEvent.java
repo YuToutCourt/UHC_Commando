@@ -29,8 +29,7 @@ public class AllEvent implements Listener {
         Player player = event.getPlayer();
         event.setJoinMessage("§7[§3+§7] " + player.getDisplayName());
         if(!this.main.START) {
-            Location spawn = new Location(Bukkit.getWorld("world"), this.main.CONFIG.getInt("Spawn.x"), this.main.CONFIG.getInt("Spawn.y"), this.main.CONFIG.getInt("Spawn.z"));
-            player.teleport(spawn);
+            player.teleport(Bukkit.getWorld("world").getSpawnLocation());
         } else {
             if(!this.main.players.contains(player.getUniqueId()))
                 player.setGameMode(GameMode.SPECTATOR);
