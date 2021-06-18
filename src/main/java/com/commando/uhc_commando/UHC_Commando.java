@@ -1,7 +1,9 @@
 package com.commando.uhc_commando;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import com.commando.uhc_commando.Commands.AllCommands;
@@ -11,11 +13,14 @@ import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.mrmicky.fastboard.FastBoard;
+
 public final class UHC_Commando extends JavaPlugin {
 
     public FileConfiguration CONFIG;
     public boolean START = false;
     public final List<UUID> players = new ArrayList<UUID>();
+	public final Map<UUID, FastBoard> boards = new HashMap<>();
 
     @Override
     public void onEnable() {
