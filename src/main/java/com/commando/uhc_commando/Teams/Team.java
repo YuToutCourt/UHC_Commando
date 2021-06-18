@@ -4,7 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 public class Team {
 
@@ -26,11 +28,16 @@ public class Team {
         this.color = ChatColor.getByChar(colorCode.charAt(1));
     }
 
-    public boolean append(UUID player) {
-        return this.players.add(player);
+    public boolean join(UUID playerId) {
+        Team.leaveAll(playerId);
+        Player player = Bukkit.getPlayer(playerId);
+        player.setCustomName(color + player.getName());
+        player.setCustomNameVisible(true);
+        return this.players.add(playerId);
     }
 
-    public boolean remove(UUID player) {
+    public boolean leave(UUID player) {
+        Bukkit.getPlayer(player).setCustomNameVisible(false);
         return this.players.remove(player);
     }
 
@@ -60,5 +67,28 @@ public class Team {
 
     public Set<UUID> getPlayers() {
         return this.players;
+    }
+
+    public static void leaveAll(UUID player) {
+        for(Team team : Team.teams) {
+            team.leave(player);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        return prime * result + id;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        Team other = (Team) obj;
+        if (id != other.id) return false;
+        return true;
     }
 }

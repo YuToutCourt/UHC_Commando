@@ -32,10 +32,10 @@ public class JoinCommand implements CommandExecutor {
 
         for(Team t : Team.teams) {
             if(t.getName().equalsIgnoreCase(args[1]) || String.valueOf(t.getId()).equalsIgnoreCase(args[1])) {
-                t.append(((Player) sender).getUniqueId());
+                t.join(((Player) sender).getUniqueId());
                 break;
             }
-            sender.sendMessage("No teams found with name/id \"" + args[1] + "\"");
+            sender.sendMessage("No teams found with name nor id \"" + args[1] + "\"");
             return false;
         }
         
