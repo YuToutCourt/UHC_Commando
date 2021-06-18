@@ -43,7 +43,12 @@ public class AllEvent implements Listener {
     public void onMessage(AsyncPlayerChatEvent event){
         Player player = event.getPlayer();
         String message = event.getMessage();
-        event.setFormat("<- "+player.getDisplayName()+" -> "+message);
+        if(this.main.CONFIG.getBoolean("Teams.TeamChat") && message.charAt(0) != '!') { // team message
+            event.setCancelled(true);
+            // TODO team chat message
+        } else { // general message
+            event.setFormat("<- "+player.getDisplayName()+" -> "+message);
+        }
     }
 
     @EventHandler
