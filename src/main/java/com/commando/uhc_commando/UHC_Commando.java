@@ -7,7 +7,6 @@ import java.util.UUID;
 import com.commando.uhc_commando.Commands.AllCommands;
 import com.commando.uhc_commando.event.AllEvent;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -45,7 +44,7 @@ public final class UHC_Commando extends JavaPlugin {
         World world = Bukkit.getWorld("world");
         world.setSpawnLocation(CONFIG.getInt("Spawn.x"), CONFIG.getInt("Spawn.y"), CONFIG.getInt("Spawn.z"));
         world.getWorldBorder().setCenter(world.getSpawnLocation());
-		world.getWorldBorder().setSize(CONFIG.getInt("Border.StartSize"));
+        world.getWorldBorder().setSize(CONFIG.getInt("Border.StartSize"));
 
         /*
          * TODO

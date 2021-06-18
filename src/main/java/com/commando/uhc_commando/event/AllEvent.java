@@ -6,12 +6,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 
 public class AllEvent implements Listener {
@@ -52,36 +49,32 @@ public class AllEvent implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) throws InterruptedException {
         World world = Bukkit.getWorld("world");
-        Player playerDeath = event.getEntity();
-        Player playerKiller = playerDeath.getKiller();
-        if (!(playerKiller instanceof Player)) {
-            event.setDeathMessage("§c§l† " + playerDeath.getDisplayName()+ " died from PVE §c§l†");
-            world.playSound(playerDeath.getLocation(), Sound.ZOMBIE_REMEDY, 1000.0F, 1.0F);
-            playerDeath.setGameMode(GameMode.SPECTATOR);
+        Player victim = event.getEntity();
+        Player attacker = victim.getKiller();
+
+        world.playSound(victim.getLocation(), Sound.ZOMBIE_REMEDY, 1000.0F, 1.0F);
+        victim.setGameMode(GameMode.SPECTATOR);
+
+        if (!(attacker instanceof Player)) {
+            event.setDeathMessage("§c§l† " + victim.getDisplayName()+ " died from PVE §c§l†");
+            victim.teleport(world.getSpawnLocation());
+
         } else {
-            event.setDeathMessage("§c§l† " + playerDeath.getDisplayName()+ " was killed by " + playerKiller.getPlayerListName() + " §c§l†");
-            world.playSound(playerDeath.getLocation(), Sound.ZOMBIE_REMEDY, 1000.0F, 1.0F);
-            //TODO
-            /*
-            Faire en sorte que quand le joueur meurt il soit 30 secondes en Spec puis tp en survie a son killer. Rejoin ça team en même temps
-             */
-            playerDeath.setGameMode(GameMode.SPECTATOR);
-            //playerDeath.setGameMode(GameMode.SURVIVAL);
-            //playerDeath.teleport(playerKiller.getLocation());
+            event.setDeathMessage("§c§l† " + victim.getDisplayName()+ " was killed by " + attacker.getPlayerListName() + " §c§l†");
 
-        }
-    }
+            // waiting 30 seconds
+            Bukkit.getScheduler().scheduleSyncRepeatingTask(this.main, new Runnable() {
+                int timer = 30;
+                public void run() {
+                    timer --;
+                    if(timer == 0) Thread.currentThread().interrupt();
+                }
+            }, 0, 20);
+            
+            victim.teleport(attacker.getLocation());
+            victim.setGameMode(GameMode.SURVIVAL);
+            //TODO Victim join the team of the killer
 
-
-    //TODO A modifier
-    @EventHandler
-    public void onClick(InventoryClickEvent event){
-        Inventory inv = event.getInventory();
-        Player player = (Player) event.getWhoClicked();
-        ItemStack current = event.getCurrentItem();
-        if(current == null) return;
-        if(inv.getName().equalsIgnoreCase("§6Configureur")){
-            event.setCancelled(true);
         }
     }
 }
