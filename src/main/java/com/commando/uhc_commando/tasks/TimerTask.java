@@ -1,4 +1,4 @@
-package com.commando.uhc_commando.tasks;
+package com.commando.uhc_commando.Tasks;
 
 import com.commando.uhc_commando.UHC_Commando;
 
@@ -28,7 +28,7 @@ public class TimerTask extends BukkitRunnable {
 	}
 	
 	private void updateBoard() { // TODO Board
-        for(FastBoard board : this.main.boards.values()) {
+        for(FastBoard board : this.main.boards) {
             board.updateLines();
         }
 	}

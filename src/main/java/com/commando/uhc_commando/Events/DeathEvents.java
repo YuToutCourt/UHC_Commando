@@ -1,54 +1,22 @@
-package com.commando.uhc_commando.event;
+package com.commando.uhc_commando.Events;
 
 import com.commando.uhc_commando.UHC_Commando;
-import org.bukkit.*;
+
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 
-
-public class AllEvent implements Listener {
+public class DeathEvents implements Listener {
 
     private UHC_Commando main;
 
-    public AllEvent(UHC_Commando uhc){
+    public DeathEvents(UHC_Commando uhc){
         this.main = uhc;
-    }
-
-    // ############ Events that are related with the CHAT in game #################
-
-    @EventHandler
-    public void playerJoin(PlayerJoinEvent event){
-        Player player = event.getPlayer();
-        event.setJoinMessage("§7[§3+§7] " + player.getDisplayName());
-        if(!this.main.START) {
-            player.teleport(Bukkit.getWorld("world").getSpawnLocation());
-        } else {
-            if(!this.main.players.contains(player.getUniqueId()))
-                player.setGameMode(GameMode.SPECTATOR);
-        }
-    }
-
-    @EventHandler
-    public void playerLeave(PlayerQuitEvent event){
-        Player player = event.getPlayer();
-        event.setQuitMessage("§7[§4-§7] " + player.getDisplayName());
-    }
-
-    @EventHandler
-    public void onMessage(AsyncPlayerChatEvent event){
-        Player player = event.getPlayer();
-        String message = event.getMessage();
-        if(this.main.CONFIG.getBoolean("Teams.TeamChat") && message.charAt(0) != '!') { // team message
-            event.setCancelled(true);
-            // TODO team chat message
-        } else { // general message
-            event.setFormat("<- "+player.getDisplayName()+" -> "+message);
-        }
     }
 
     @EventHandler

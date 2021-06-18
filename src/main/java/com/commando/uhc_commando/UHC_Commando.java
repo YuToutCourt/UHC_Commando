@@ -1,16 +1,22 @@
 package com.commando.uhc_commando;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
-import com.commando.uhc_commando.Commands.AllCommands;
-import com.commando.uhc_commando.event.AllEvent;
+import com.commando.uhc_commando.Commands.AlertCommand;
+import com.commando.uhc_commando.Commands.CreateSpawnCommand;
+import com.commando.uhc_commando.Commands.RuleCommand;
+import com.commando.uhc_commando.Commands.StartCommand;
+import com.commando.uhc_commando.Events.ChatEvents;
+import com.commando.uhc_commando.Events.DeathEvents;
+import com.commando.uhc_commando.Events.PlayerEvents;
+
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.mrmicky.fastboard.FastBoard;
@@ -18,9 +24,8 @@ import fr.mrmicky.fastboard.FastBoard;
 public final class UHC_Commando extends JavaPlugin {
 
     public FileConfiguration CONFIG;
-    public boolean START = false;
     public final List<UUID> players = new ArrayList<UUID>();
-	public final Map<UUID, FastBoard> boards = new HashMap<>();
+	public final List<FastBoard> boards = new ArrayList<FastBoard>();
 
     @Override
     public void onEnable() {
@@ -29,11 +34,16 @@ public final class UHC_Commando extends JavaPlugin {
 
         Bukkit.broadcastMessage("§a-------- Commando are ready ! ---------");
         System.out.println("-------- Commando are ready ! ---------");
-        this.getCommand("alert").setExecutor(new AllCommands(this));
-        this.getCommand("rule").setExecutor(new AllCommands(this));
-        this.getCommand("start").setExecutor(new AllCommands(this));
-        this.getCommand("createSpawn").setExecutor(new AllCommands(this));
-        this.getServer().getPluginManager().registerEvents(new AllEvent(this), this);
+        
+        this.getCommand("alert").setExecutor(new AlertCommand());
+        this.getCommand("rule").setExecutor(new RuleCommand());
+        this.getCommand("start").setExecutor(new StartCommand(this));
+        this.getCommand("createSpawn").setExecutor(new CreateSpawnCommand());
+
+        PluginManager pm = this.getServer().getPluginManager();
+        pm.registerEvents(new ChatEvents(this), this);
+        pm.registerEvents(new DeathEvents(this), this);
+        pm.registerEvents(new PlayerEvents(this), this);
 
         this.resetGame();
     }
@@ -57,5 +67,15 @@ public final class UHC_Commando extends JavaPlugin {
          * reset teams
          * 
          */
+    }
+
+    public void removeBoardOf(Player player) {
+        for(FastBoard board : this.boards) {
+            if(board.getPlayer().getUniqueId() == player.getUniqueId()) {
+                board.delete();
+                this.boards.remove(board);
+                return;
+            }
+        }
     }
 }
