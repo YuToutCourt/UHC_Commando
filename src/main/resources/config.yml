@@ -45,7 +45,7 @@ Teams:
   TimeBeforeSend: 2 # Time before sending the above message
   TeamChat: true # Enable or not team chat
   TeamsName:  {"Dark Red", "Red", "Orange", "Yellow", "Dark Green", "Green", "Aqua", "Dark Blue", "Blue", "Pink",         "Purple",      "White"}
-  TeamsColor: {"dark_red", "red", "gold",   "yellow", "dark_green", "green", "aqua", "dark_blue", "blue", "light_purple", "dark_purple", "white"}
+  TeamsColor: {"DARK_RED", "RED", "GOLD",   "YELLOW", "DARK_GREEN", "GREEN", "AQUA", "DARK_BLUE", "BLUE", "LIGHT_PURPLE", "DARK_PURPLE", "WHITE"}
   TeamsColorCode: {"&4",   "&c",  "&6",     "&e",     "&2",         "&a",    "&b",   "&1",           "&9",    "&d",           "&5",          "&f"}
 
 Invicibility: 30 # Invicibility time at the start of the game, in seconds

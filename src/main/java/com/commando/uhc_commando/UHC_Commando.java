@@ -25,7 +25,7 @@ import fr.mrmicky.fastboard.FastBoard;
 public final class UHC_Commando extends JavaPlugin {
 
     public FileConfiguration CONFIG;
-    public final List<UUID> players = new ArrayList<UUID>();
+    public final List<UUID> playersInTheParty = new ArrayList<UUID>();
 	public final List<FastBoard> boards = new ArrayList<FastBoard>();
 
     @Override

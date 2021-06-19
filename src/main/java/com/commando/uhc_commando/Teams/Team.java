@@ -14,10 +14,11 @@ public class Team {
     public static boolean friendFire;
     public static boolean chat;
     public static int timeBeforeSend;
-    public static Set<Team> teams;
+    public static Set<Team> teams;  
+
     
-    private int id;
-    private String name;
+    private final int id;
+    private final String name;
     private ChatColor color;
     private Set<UUID> players;
 
@@ -47,10 +48,6 @@ public class Team {
 
     public int getId() {
         return this.id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getName() {

@@ -1,7 +1,8 @@
 package com.commando.uhc_commando.Commands;
 
 import com.commando.uhc_commando.UHC_Commando;
-import com.commando.uhc_commando.Tasks.TimerTask;
+import com.commando.uhc_commando.tasks.TimerTask;
+import com.commando.uhc_commando.Teams.Team;
 
 import org.bukkit.*;
 import org.bukkit.command.Command;
@@ -13,9 +14,16 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.List;
+
 public class StartCommand implements CommandExecutor {
 
     private UHC_Commando main;
+    // Stocke dans une liste les noms des teams mit dans la dossier config
+    private List<String> teamsName = (List<String>) main.CONFIG.getList("Team.TeamsName");
+
+    // Stocke dans une liste les couleur des teams mit dans la dossier config
+    private List<String> teamsColor = (List<String>) main.CONFIG.getList("Team.TeamsColor");
 
     public StartCommand(UHC_Commando uhc){
         this.main = uhc;
@@ -38,7 +46,7 @@ public class StartCommand implements CommandExecutor {
         world.setTime(0);
         // TODO alternative ?
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spreadplayers 0 0 10 200 false @a"); //x z DistanceEntreChaquePlayer MaxRangeSurLaTp team?
-        
+        int indexForTeam = 0;
         for(Player player : Bukkit.getOnlinePlayers()) {
             // reset potion effects
             for(PotionEffect effect : player.getActivePotionEffects()) {
@@ -58,8 +66,13 @@ public class StartCommand implements CommandExecutor {
             Inventory inv = player.getInventory();
             inv.clear();
             inv.addItem(new ItemStack(Material.COOKED_BEEF, 64));
-
-            this.main.players.add(player.getUniqueId());
+            //Permet de mettre tout les jouers dans une team différentes        
+            // IF THEY ARE MORE PLAYERS THAT TEAM THAT MIGHT CREATE AN ERROR
+            Team newTeam = new Team(indexForTeam,teamsName.get(indexForTeam),teamsColor.get(indexForTeam));
+            newTeam.join(player.getUniqueId());
+            
+            this.main.playersInTheParty.add(player.getUniqueId());
+            indexForTeam++;
         }
 
         world.setDifficulty(Difficulty.HARD);

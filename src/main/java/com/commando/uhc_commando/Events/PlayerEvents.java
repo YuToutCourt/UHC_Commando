@@ -1,7 +1,7 @@
 package com.commando.uhc_commando.Events;
 
 import com.commando.uhc_commando.UHC_Commando;
-import com.commando.uhc_commando.Tasks.TimerTask;
+import com.commando.uhc_commando.tasks.TimerTask;
 
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -29,7 +29,7 @@ public class PlayerEvents implements Listener {
         if(!TimerTask.RUN) {
             player.teleport(Bukkit.getWorld("world").getSpawnLocation());
         } else {
-            if(!this.main.players.contains(player.getUniqueId()))
+            if(!this.main.playersInTheParty.contains(player.getUniqueId()))
                 player.setGameMode(GameMode.SPECTATOR);
         }
     }
