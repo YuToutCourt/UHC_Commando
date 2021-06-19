@@ -1,7 +1,7 @@
 package com.commando.uhc_commando.Commands;
 
 import com.commando.uhc_commando.UHC_Commando;
-import com.commando.uhc_commando.tasks.TimerTask;
+import com.commando.uhc_commando.Tasks.TimerTask;
 import com.commando.uhc_commando.Teams.Team;
 
 import org.bukkit.*;

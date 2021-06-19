@@ -1,4 +1,4 @@
-package com.commando.uhc_commando.tasks;
+package com.commando.uhc_commando.Tasks;
 
 import com.commando.uhc_commando.UHC_Commando;
 
