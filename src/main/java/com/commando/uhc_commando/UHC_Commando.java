@@ -28,6 +28,7 @@ public final class UHC_Commando extends JavaPlugin {
     public FileConfiguration CONFIG;
     public final List<UUID> playersInTheParty = new ArrayList<UUID>();
 	public final List<FastBoard> boards = new ArrayList<FastBoard>();
+    public World WORLD;
 
     @Override
     public void onEnable() {
@@ -40,12 +41,14 @@ public final class UHC_Commando extends JavaPlugin {
         this.getCommand("alert").setExecutor(new AlertCommand());
         this.getCommand("rule").setExecutor(new RuleCommand());
         this.getCommand("start").setExecutor(new StartCommand(this));
-        this.getCommand("createSpawn").setExecutor(new CreateSpawnCommand());
+        this.getCommand("createSpawn").setExecutor(new CreateSpawnCommand(this));
 
         PluginManager pm = this.getServer().getPluginManager();
         pm.registerEvents(new ChatEvents(this), this);
         pm.registerEvents(new DeathEvents(this), this);
         pm.registerEvents(new PlayerEvents(this), this);
+
+        WORLD = Bukkit.getWorld(CONFIG.getString("WorldName"));
 
         this.resetGame();
     }
@@ -58,10 +61,9 @@ public final class UHC_Commando extends JavaPlugin {
 
     public void resetGame() {
         // Reset worldborder
-        World world = Bukkit.getWorld("world");
-        world.setSpawnLocation(CONFIG.getInt("Spawn.x"), CONFIG.getInt("Spawn.y"), CONFIG.getInt("Spawn.z"));
-        world.getWorldBorder().setCenter(world.getSpawnLocation());
-        world.getWorldBorder().setSize(CONFIG.getInt("Border.StartSize"));
+        WORLD.setSpawnLocation(CONFIG.getInt("Spawn.x"), CONFIG.getInt("Spawn.y"), CONFIG.getInt("Spawn.z"));
+        WORLD.getWorldBorder().setCenter(WORLD.getSpawnLocation());
+        WORLD.getWorldBorder().setSize(CONFIG.getInt("Border.StartSize"));
         TimerTask.WBtime = CONFIG.getInt("Border.TimeBeforeMoving");
 
         // Reset teams

@@ -2,7 +2,6 @@ package com.commando.uhc_commando.Tasks;
 
 import com.commando.uhc_commando.UHC_Commando;
 
-import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.mrmicky.fastboard.FastBoard;
@@ -16,8 +15,8 @@ public class TimerTask extends BukkitRunnable {
 
 	private UHC_Commando main;
 	
-	public TimerTask(UHC_Commando main) {
-		this.main = main;
+	public TimerTask(UHC_Commando uhc) {
+		this.main = uhc;
 		time = 0;
 	}
 	
@@ -52,7 +51,7 @@ public class TimerTask extends BukkitRunnable {
 	private void moveWorldBorder() { 
 		int endSize = this.main.CONFIG.getInt("Border.EndSize");
 		int duration = this.main.CONFIG.getInt("Border.MovingDuration");
-		Bukkit.getWorld("world").getWorldBorder().setSize(endSize, duration);
+		this.main.WORLD.getWorldBorder().setSize(endSize, duration);
 	}
 }
  

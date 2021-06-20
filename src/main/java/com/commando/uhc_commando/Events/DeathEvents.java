@@ -6,7 +6,6 @@ import com.commando.uhc_commando.Teams.Team;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Sound;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,16 +22,15 @@ public class DeathEvents implements Listener {
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event) throws InterruptedException {
-        World world = Bukkit.getWorld("world");
         Player victim = event.getEntity();
         Player attacker = victim.getKiller();
 
-        world.playSound(victim.getLocation(), Sound.ZOMBIE_REMEDY, 1000.0F, 1.0F);
+        this.main.WORLD.playSound(victim.getLocation(), Sound.ZOMBIE_REMEDY, 1000.0F, 1.0F);
         victim.setGameMode(GameMode.SPECTATOR);
 
         if (!(attacker instanceof Player)) {
             event.setDeathMessage("§c§l† " + victim.getDisplayName()+ " died from PVE §c§l†");
-            victim.teleport(world.getSpawnLocation());
+            victim.teleport(this.main.WORLD.getSpawnLocation());
 
         } else {
             event.setDeathMessage("§c§l† " + victim.getDisplayName()+ " was killed by " + attacker.getPlayerListName() + " §c§l†");

@@ -1,4 +1,5 @@
 Prefix: "&7[&c&lUHC&7]&r" #Prefix of chat
+WorldName: "world" # Name of the world played in
 Spawn: # Spawn coordinates
   x: 0.5 # float
   y: 250 # int

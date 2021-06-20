@@ -27,7 +27,7 @@ public class PlayerEvents implements Listener {
         this.main.boards.add(new FastBoard(player));
 
         if(!TimerTask.RUN) {
-            player.teleport(Bukkit.getWorld("world").getSpawnLocation());
+            player.teleport(this.main.WORLD.getSpawnLocation());
         } else {
             if(!this.main.playersInTheParty.contains(player.getUniqueId()))
                 player.setGameMode(GameMode.SPECTATOR);

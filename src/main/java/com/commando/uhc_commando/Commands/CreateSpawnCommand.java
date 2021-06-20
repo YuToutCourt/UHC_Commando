@@ -1,5 +1,7 @@
 package com.commando.uhc_commando.Commands;
 
+import com.commando.uhc_commando.UHC_Commando;
+
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -9,6 +11,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CreateSpawnCommand implements CommandExecutor {
+
+    private UHC_Commando main;
+
+    public CreateSpawnCommand(UHC_Commando uhc) {
+        this.main = uhc;
+    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -20,7 +28,7 @@ public class CreateSpawnCommand implements CommandExecutor {
     }
 
     public boolean createSpawn(CommandSender sender){
-        Location spawn = Bukkit.getWorld("world").getSpawnLocation();
+        Location spawn = this.main.WORLD.getSpawnLocation();
 
         Player player = (Player) sender;
         GameMode gm = player.getGameMode();

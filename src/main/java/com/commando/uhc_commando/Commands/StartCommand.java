@@ -40,9 +40,8 @@ public class StartCommand implements CommandExecutor {
         }
         int durationEffect = this.main.CONFIG.getInt("Invicibility");
 
-        World world = Bukkit.getWorld("world");
-        world.setDifficulty(Difficulty.PEACEFUL);
-        world.setTime(0);
+        this.main.WORLD.setDifficulty(Difficulty.PEACEFUL);
+        this.main.WORLD.setTime(0);
         // TODO alternative ?
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spreadplayers 0 0 10 200 false @a"); //x z DistanceEntreChaquePlayer MaxRangeSurLaTp team?
         int indexOfTeam = 0;
@@ -71,7 +70,7 @@ public class StartCommand implements CommandExecutor {
             indexOfTeam++;
         }
 
-        world.setDifficulty(Difficulty.HARD);
+        this.main.WORLD.setDifficulty(Difficulty.HARD);
 
         TimerTask timer = new TimerTask(this.main);
         timer.runTaskTimer(this.main, 0, 20);
