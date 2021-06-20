@@ -2,11 +2,13 @@ package com.commando.uhc_commando.Events;
 
 import com.commando.uhc_commando.UHC_Commando;
 import com.commando.uhc_commando.Tasks.TimerTask;
+import com.commando.uhc_commando.Teams.Team;
 
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
@@ -39,6 +41,17 @@ public class PlayerEvents implements Listener {
         Player player = event.getPlayer();
         event.setQuitMessage("§7[§4-§7] " + player.getDisplayName());
         this.main.removeBoardOf(player);
+    }
+
+    @EventHandler
+    public void damageEvent(EntityDamageByEntityEvent event) {
+        if(!(event.getEntity() instanceof Player)) return;
+        if(!(event.getDamager() instanceof Player)) return;
+        Player victim = (Player) event.getEntity();
+        Player attacker = (Player) event.getDamager();
+
+        if(!Team.friendlyFire && Team.getTeamOf(victim).equals(Team.getTeamOf(attacker)))
+            event.setCancelled(true);
     }
 
 }

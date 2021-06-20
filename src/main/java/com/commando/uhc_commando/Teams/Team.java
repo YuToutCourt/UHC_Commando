@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -32,17 +31,16 @@ public class Team {
         this.color = ChatColor.getByChar(colorCode.charAt(1));
     }
 
-    public boolean join(UUID playerId) {
-        Team.leaveAll(playerId);
-        Player player = Bukkit.getPlayer(playerId);
+    public boolean join(Player player) {
+        Team.leaveAll(player);
         player.setCustomName(this.color + "[" + this.prefix +"] " + player.getName());
         player.setCustomNameVisible(true);
-        return this.players.add(playerId);
+        return this.players.add(player.getUniqueId());
     }
 
-    public boolean leave(UUID player) {
-        Bukkit.getPlayer(player).setCustomNameVisible(false);
-        return this.players.remove(player);
+    public boolean leave(Player player) {
+        player.setCustomNameVisible(false);
+        return this.players.remove(player.getUniqueId());
     }
 
     public void empty() {
@@ -73,10 +71,18 @@ public class Team {
         return this.players;
     }
 
-    public static void leaveAll(UUID player) {
+    public static void leaveAll(Player player) {
         for(Team team : Team.teams) {
             team.leave(player);
         }
+    }
+
+    public static Team getTeamOf(Player player) {
+        UUID uuid = player.getUniqueId();
+        for(Team team : Team.teams) {
+            if(team.players.contains(uuid)) return team;
+        }
+        return null;
     }
 
     @Override

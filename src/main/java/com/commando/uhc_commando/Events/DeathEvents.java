@@ -14,7 +14,6 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 public class DeathEvents implements Listener {
 
     private UHC_Commando main;
-    private Team teams;
 
     public DeathEvents(UHC_Commando uhc){
         this.main = uhc;
@@ -46,10 +45,7 @@ public class DeathEvents implements Listener {
             
             victim.teleport(attacker.getLocation());
             victim.setGameMode(GameMode.SURVIVAL);
-            //TODO Victim join the team of the killer
-            //Problème comment je l'ajoute/remove d'une team précise
-            teams.leave(victim.getUniqueId());
-            teams.join(victim.getUniqueId());
+            Team.getTeamOf(attacker).join(victim);
 
 
 
