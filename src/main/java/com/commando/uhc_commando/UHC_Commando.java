@@ -15,6 +15,7 @@ import com.commando.uhc_commando.Tasks.TimerTask;
 import com.commando.uhc_commando.Teams.Team;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -29,6 +30,8 @@ public final class UHC_Commando extends JavaPlugin {
     public final List<UUID> playersInTheParty = new ArrayList<UUID>();
 	public final List<FastBoard> boards = new ArrayList<FastBoard>();
     public World WORLD;
+
+    public boolean PVP = false;
 
     @Override
     public void onEnable() {
@@ -64,7 +67,7 @@ public final class UHC_Commando extends JavaPlugin {
         WORLD.setSpawnLocation(CONFIG.getInt("Spawn.x"), CONFIG.getInt("Spawn.y"), CONFIG.getInt("Spawn.z"));
         WORLD.getWorldBorder().setCenter(WORLD.getSpawnLocation());
         WORLD.getWorldBorder().setSize(CONFIG.getInt("Border.StartSize"));
-        TimerTask.WBtime = CONFIG.getInt("Border.TimeBeforeMoving");
+        TimerTask.setWordborderTimer(CONFIG.getInt("Border.TimeBeforeMoving"));
 
         // Reset teams
         Team.teamsName = (List<String>) CONFIG.getList("Team.TeamsName");
@@ -83,6 +86,26 @@ public final class UHC_Commando extends JavaPlugin {
          * 
          */
     }
+
+    public FastBoard createBoard(Player player) {
+	    String SEPARATOR = ChatColor.RED + "--------------";
+		FastBoard board = new FastBoard(player);
+
+		List<String> lines = new ArrayList<String>();
+		lines.add(SEPARATOR);
+		lines.add(TimerTask.formatTime(0, true));
+		lines.add(SEPARATOR);
+		lines.add(TimerTask.formatLine("Team", 0));
+		lines.add(TimerTask.formatLine("Your team", 0));
+		lines.add(SEPARATOR);
+		lines.add(TimerTask.formatLine("PvP", TimerTask.formatTime(0, false)));
+		lines.add(TimerTask.formatLine("Border", TimerTask.formatTime(0, false)));
+		lines.add(TimerTask.formatLine("Size", 0));
+		lines.add(SEPARATOR);
+		board.updateLines(lines);
+
+		return board;
+	}
 
     public void removeBoardOf(Player player) {
         for(FastBoard board : this.boards) {

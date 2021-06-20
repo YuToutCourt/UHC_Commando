@@ -13,9 +13,7 @@ DayLightCycle:
 Scoreboard:
   Enable: true # enable the scoreboard or not
   Title: "UHC Commando"
-  ShowPlayers: true # Display remainings player amount or not
   ShowTeams: true # Display remaining teams or not
-  ShowDay: true # Display the current day
   ShowTimer: true # Display the current of the party
 
 TabHealth: true # Show health in tab board
@@ -53,7 +51,7 @@ Invicibility: 30 # Invicibility time at the start of the game, in seconds
 TimeBeforePvp: 20 # Time in minutes before PVP is enable
 
 Border:
-  StartSize: 2000 # Initial size of the border
+  StartSize: 2000 # Initial size (width) of the border
   TimeBeforeMoving: 60 # Amount of time in minutes before the border starts moving
   EndSize: 500 # Final size of the border
   MovingDuration: 1200 # Moving time of the border in seconds

@@ -12,8 +12,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import fr.mrmicky.fastboard.FastBoard;
-
 public class PlayerEvents implements Listener {
 
     private UHC_Commando main;
@@ -26,7 +24,7 @@ public class PlayerEvents implements Listener {
     public void playerJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
         event.setJoinMessage("§7[§3+§7] " + player.getDisplayName());
-        this.main.boards.add(new FastBoard(player));
+        this.main.boards.add(this.main.createBoard(player));
 
         if(!TimerTask.RUN) {
             player.teleport(this.main.WORLD.getSpawnLocation());

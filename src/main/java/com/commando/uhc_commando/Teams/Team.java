@@ -27,7 +27,7 @@ public class Team {
         players = new HashSet<UUID>();
         this.id = id;
         this.name = name;
-        this.prefix = prefix;
+        this.prefix = prefix.replace("&", "§");
         this.color = ChatColor.getByChar(colorCode.charAt(1));
     }
 
