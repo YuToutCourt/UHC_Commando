@@ -62,8 +62,15 @@ public final class UHC_Commando extends JavaPlugin {
         world.getWorldBorder().setCenter(world.getSpawnLocation());
         world.getWorldBorder().setSize(CONFIG.getInt("Border.StartSize"));
 
-        for(Team team : Team.teams) {
-            team.empty();
+        // Reset teams
+        Team.teamsName = (List<String>) CONFIG.getList("Team.TeamsName");
+        Team.teamsPrefix = (List<String>) CONFIG.getList("Team.Prefix");
+        Team.teamsColorCode = (List<String>) CONFIG.getList("Team.TeamsColor");
+        Team.friendlyFire = CONFIG.getBoolean("Team.FriendlyFire");
+        Team.chatEnable = CONFIG.getBoolean("Team.TeamChat");
+        Team.teams.clear();
+        for(int i = 0; i < Team.teamsName.size(); i++) {
+            Team.teams.add(new Team(i, Team.teamsName.get(i), Team.teamsPrefix.get(i), Team.teamsColorCode.get(i)));
         }
 
         /*
