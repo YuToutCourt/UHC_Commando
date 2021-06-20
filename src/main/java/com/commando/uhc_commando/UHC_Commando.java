@@ -11,6 +11,7 @@ import com.commando.uhc_commando.Commands.StartCommand;
 import com.commando.uhc_commando.Events.ChatEvents;
 import com.commando.uhc_commando.Events.DeathEvents;
 import com.commando.uhc_commando.Events.PlayerEvents;
+import com.commando.uhc_commando.Tasks.TimerTask;
 import com.commando.uhc_commando.Teams.Team;
 
 import org.bukkit.Bukkit;
@@ -61,6 +62,7 @@ public final class UHC_Commando extends JavaPlugin {
         world.setSpawnLocation(CONFIG.getInt("Spawn.x"), CONFIG.getInt("Spawn.y"), CONFIG.getInt("Spawn.z"));
         world.getWorldBorder().setCenter(world.getSpawnLocation());
         world.getWorldBorder().setSize(CONFIG.getInt("Border.StartSize"));
+        TimerTask.WBtime = CONFIG.getInt("Border.TimeBeforeMoving");
 
         // Reset teams
         Team.teamsName = (List<String>) CONFIG.getList("Team.TeamsName");
