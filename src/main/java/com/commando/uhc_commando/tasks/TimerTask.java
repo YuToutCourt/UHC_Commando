@@ -86,8 +86,8 @@ public class TimerTask extends BukkitRunnable {
     private void updateBoards() {
         for(FastBoard board : this.main.boards) {
 			board.updateLine(1, formatTime(time, true));
-			board.updateLine(3, formatLine("Team", Team.teams.size()));
-			board.updateLine(4, formatLine("Your team", Team.getTeamOf(board.getPlayer()).getPlayers().size()));
+			board.updateLine(3, formatLine("Team", Team.leadingTeams));
+			board.updateLine(4, formatLine("Your team", Team.getTeamOf(board.getPlayer()).getPlayerAmount()));
 			if(PvPtime > 0) board.updateLine(6, formatLine("PvP", formatTime(PvPtime, false)));
 			else board.updateLine(6, formatLine("PvP", "ON", ChatColor.GREEN));
 			board.updateLine(7, formatLine("Border", formatTime(WBtime, false)));

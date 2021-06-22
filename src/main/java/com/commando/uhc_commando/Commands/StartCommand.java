@@ -65,7 +65,7 @@ public class StartCommand implements CommandExecutor {
             inv.clear();
             inv.addItem(new ItemStack(Material.COOKED_BEEF, 64));
             
-            Team.teams.get(indexOfTeam).join(player);
+            Team.teams.get(indexOfTeam).setLeader(player);
             this.main.playersInTheParty.add(player.getUniqueId());
             indexOfTeam++;
         }

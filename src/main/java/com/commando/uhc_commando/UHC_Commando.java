@@ -77,7 +77,7 @@ public final class UHC_Commando extends JavaPlugin {
         Team.chatEnable = CONFIG.getBoolean("Team.TeamChat");
         Team.teams.clear();
         for(int i = 0; i < Team.teamsName.size(); i++) {
-            Team.teams.add(new Team(i, Team.teamsName.get(i), Team.teamsPrefix.get(i), Team.teamsColorCode.get(i)));
+            Team.teams.add(new Team(Team.teamsName.get(i), Team.teamsPrefix.get(i), Team.teamsColorCode.get(i)));
         }
 
         /*
@@ -90,6 +90,7 @@ public final class UHC_Commando extends JavaPlugin {
     public FastBoard createBoard(Player player) {
 	    String SEPARATOR = ChatColor.RED + "--------------";
 		FastBoard board = new FastBoard(player);
+        board.updateTitle(CONFIG.getString("ScoreboardTitle").replace("&", "§"));
 
 		List<String> lines = new ArrayList<String>();
 		lines.add(SEPARATOR);

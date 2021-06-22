@@ -10,11 +10,7 @@ DayLightCycle:
   Enable: false # Infinite day if false
   Hour: 6000 # If infinite day, time of the day to stay at
 
-Scoreboard:
-  Enable: true # enable the scoreboard or not
-  Title: "UHC Commando"
-  ShowTeams: true # Display remaining teams or not
-  ShowTimer: true # Display the current of the party
+ScoreboardTitle: "UHC Commando"
 
 TabHealth: true # Show health in tab board
 SpecIfStart: true # Set to spectator player if joining after start

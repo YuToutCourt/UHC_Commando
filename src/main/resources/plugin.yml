@@ -17,3 +17,6 @@ commands:
     description: Create the spawn plateform
     usage: /createSpawn
     permission: perm.use
+  inv:
+    description: See the inv of a player (You are able to take the item)
+    usage: /inv <Pseudo>

@@ -2,7 +2,7 @@
 
 - Système de hiérarchie dans la team et pouvoir voir l'inventaire des parties inférieures
 
-- Join team on death
++ Join team on death
 
 - Bordure
 

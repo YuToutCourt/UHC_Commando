@@ -45,7 +45,7 @@ public class DeathEvents implements Listener {
             
             victim.teleport(attacker.getLocation());
             victim.setGameMode(GameMode.SURVIVAL);
-            Team.getTeamOf(attacker).join(victim);
+            Team.getTeamOf(attacker).join(Team.getTeamOf(victim));
 
 
 
