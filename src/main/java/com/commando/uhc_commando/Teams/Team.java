@@ -1,6 +1,7 @@
 package com.commando.uhc_commando.Teams;
 
 import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -16,7 +17,7 @@ public class Team {
     public static List<String> teamsColorCode;
     public static boolean friendlyFire;
     public static boolean chatEnable;
-    public static List<Team> teams;
+    public static List<Team> teams = new ArrayList<Team>();
     public static int leadingTeams;
 
     private final String name;

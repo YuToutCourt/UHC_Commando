@@ -20,20 +20,20 @@ public class InventoryCommand implements CommandExecutor {
     }
 
     public boolean inventory(CommandSender sender, String[] args) {
-        if (args.length != 1) return false;
+        if (args.length != 2) return false;
         Player playerSender = (Player) sender;
-        Player target = Bukkit.getServer().getPlayer(args[0]);
+        Player target = Bukkit.getServer().getPlayer(args[1]);
         if (target == null) {
             playerSender.sendMessage("§c§lThe player "+ ChatColor.WHITE + args[0] + " §c§lis not connected");
-            return false;
+            return true;
         }
         if (playerSender.getName().equals(target.getName())){
             playerSender.sendMessage("§eYou can't open your own inventory");
-            return false;
+            return true;
         } 
         if(!Team.isPlayerLeading(playerSender, target)) {
             playerSender.sendMessage("§cYou don't lead this player");
-            return false;
+            return true;
         }
         playerSender.openInventory(target.getInventory());
         return true;
