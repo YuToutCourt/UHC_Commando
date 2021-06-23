@@ -48,7 +48,7 @@ public final class UHC_Commando extends JavaPlugin {
         this.getCommand("inv").setExecutor(new InventoryCommand());
 
         PluginManager pm = this.getServer().getPluginManager();
-        pm.registerEvents(new ChatEvents(this), this);
+        pm.registerEvents(new ChatEvents(), this);
         pm.registerEvents(new DeathEvents(this), this);
         pm.registerEvents(new PlayerEvents(this), this);
 
@@ -71,14 +71,13 @@ public final class UHC_Commando extends JavaPlugin {
 
         // Reset teams
         List<String> teams = CONFIG.getStringList("Teams.Teams");
-        System.out.println(teams.size());
         Team.friendlyFire = CONFIG.getBoolean("Teams.FriendlyFire");
         Team.chatEnable = CONFIG.getBoolean("Teams.TeamChat");
         Team.teams.clear();
         Team.teamsColorCode.clear();
         Team.teamsPrefix.clear();
         Team.teamsName.clear();
-        for(int i = 0; i < Team.teamsName.size(); i++) {
+        for(int i = 0; i < teams.size(); i++) {
             String currentTeam = teams.get(i);
             String[] splitTeam = currentTeam.split(",");
             Team.teamsColorCode.add(splitTeam[0]);
