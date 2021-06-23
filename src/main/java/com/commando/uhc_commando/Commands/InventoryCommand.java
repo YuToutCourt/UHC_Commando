@@ -1,5 +1,6 @@
 package com.commando.uhc_commando.Commands;
 
+import com.commando.uhc_commando.Tasks.TimerTask;
 import com.commando.uhc_commando.Teams.Team;
 
 import org.bukkit.Bukkit;
@@ -20,14 +21,18 @@ public class InventoryCommand implements CommandExecutor {
     }
 
     public boolean inventory(CommandSender sender, String[] args) {
-        if (args.length != 2) return false;
+        if (args.length != 1) return false;
         Player playerSender = (Player) sender;
-        Player target = Bukkit.getServer().getPlayer(args[1]);
-        if (target == null) {
+        Player target = Bukkit.getServer().getPlayer(args[0]);
+        if(!TimerTask.RUN) {
+            playerSender.sendMessage("§cThe game has not started yet");
+            return true;
+        }
+        if(target == null) {
             playerSender.sendMessage("§c§lThe player "+ ChatColor.WHITE + args[0] + " §c§lis not connected");
             return true;
         }
-        if (playerSender.getName().equals(target.getName())){
+        if(playerSender.getName().equals(target.getName())){
             playerSender.sendMessage("§eYou can't open your own inventory");
             return true;
         } 

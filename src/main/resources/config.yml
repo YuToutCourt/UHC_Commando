@@ -39,9 +39,19 @@ Teams:
   DisplayJoinTeamMessage: true # Show message to join team on loggin before start
   TimeBeforeSend: 2 # Time before sending the above message
   TeamChat: true # Enable or not team chat
-  TeamsName:  {"Dark Red", "Red", "Orange", "Yellow", "Dark Green", "Green", "Aqua", "Dark Blue", "Blue", "Pink", "Purple", "White"}
-  TeamsPrefix: {"#",       "#",   "#",      "#",      "#",          "#",     "#",    "#",         "#",    "#",    "#",      "#"}
-  TeamsColorCode: {"&4",   "&c",  "&6",     "&e",     "&2",         "&a",    "&b",   "&1",        "&9",   "&d",   "&5",     "&f"}
+  Teams: # color,symbol,name - splitted by comma
+    - "§4,#,Dark Red"
+    - "§c,#,Red"
+    - "§6,#,Orange"
+    - "§e,#,Yellow"
+    - "§2,#,Dark Green"
+    - "§a,#,Green"
+    - "§b,#,Aqua"
+    - "§1,#,Dark Blue"
+    - "§9,#,Blue"
+    - "§d,#,Pink"
+    - "§5,#,Purple"
+    - "§f,#,White"
 
 Invicibility: 30 # Invicibility time at the start of the game, in seconds
 TimeBeforePvp: 20 # Time in minutes before PVP is enable

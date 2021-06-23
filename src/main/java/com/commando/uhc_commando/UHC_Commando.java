@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.commando.uhc_commando.Commands.AlertCommand;
 import com.commando.uhc_commando.Commands.CreateSpawnCommand;
+import com.commando.uhc_commando.Commands.InventoryCommand;
 import com.commando.uhc_commando.Commands.RuleCommand;
 import com.commando.uhc_commando.Commands.StartCommand;
 import com.commando.uhc_commando.Events.ChatEvents;
@@ -39,12 +40,12 @@ public final class UHC_Commando extends JavaPlugin {
         CONFIG = this.getConfig();
 
         Bukkit.broadcastMessage("§a-------- Commando are ready ! ---------");
-        System.out.println("-------- Commando are ready ! ---------");
 
         this.getCommand("alert").setExecutor(new AlertCommand());
         this.getCommand("rule").setExecutor(new RuleCommand());
         this.getCommand("start").setExecutor(new StartCommand(this));
         this.getCommand("createSpawn").setExecutor(new CreateSpawnCommand(this));
+        this.getCommand("inv").setExecutor(new InventoryCommand());
 
         PluginManager pm = this.getServer().getPluginManager();
         pm.registerEvents(new ChatEvents(this), this);
@@ -59,7 +60,6 @@ public final class UHC_Commando extends JavaPlugin {
     @Override
     public void onDisable() {
         Bukkit.broadcastMessage("§c------- Commando going to bed ! --------");
-        System.out.println("------- Commando going to bed ! --------");
     }
 
     public void resetGame() {
@@ -70,14 +70,21 @@ public final class UHC_Commando extends JavaPlugin {
         TimerTask.setWordborderTimer(CONFIG.getInt("Border.TimeBeforeMoving"));
 
         // Reset teams
-        Team.teamsName = (List<String>) CONFIG.getList("Team.TeamsName");
-        Team.teamsPrefix = (List<String>) CONFIG.getList("Team.Prefix");
-        Team.teamsColorCode = (List<String>) CONFIG.getList("Team.TeamsColor");
-        Team.friendlyFire = CONFIG.getBoolean("Team.FriendlyFire");
-        Team.chatEnable = CONFIG.getBoolean("Team.TeamChat");
+        List<String> teams = CONFIG.getStringList("Teams.Teams");
+        System.out.println(teams.size());
+        Team.friendlyFire = CONFIG.getBoolean("Teams.FriendlyFire");
+        Team.chatEnable = CONFIG.getBoolean("Teams.TeamChat");
         Team.teams.clear();
+        Team.teamsColorCode.clear();
+        Team.teamsPrefix.clear();
+        Team.teamsName.clear();
         for(int i = 0; i < Team.teamsName.size(); i++) {
-            Team.teams.add(new Team(Team.teamsName.get(i), Team.teamsPrefix.get(i), Team.teamsColorCode.get(i)));
+            String currentTeam = teams.get(i);
+            String[] splitTeam = currentTeam.split(",");
+            Team.teamsColorCode.add(splitTeam[0]);
+            Team.teamsPrefix.add(splitTeam[1]);
+            Team.teamsName.add(splitTeam[2]);
+            Team.teams.add(new Team(splitTeam[2], splitTeam[1], splitTeam[0]));
         }
 
         /*
