@@ -40,18 +40,19 @@ Teams:
   TimeBeforeSend: 2 # Time before sending the above message
   TeamChat: true # Enable or not team chat
   Teams: # color,symbol,name - splitted by comma
-    - "§4,#,Dark Red"
-    - "§c,#,Red"
-    - "§6,#,Orange"
-    - "§e,#,Yellow"
-    - "§2,#,Dark Green"
-    - "§a,#,Green"
-    - "§b,#,Aqua"
-    - "§1,#,Dark Blue"
-    - "§9,#,Blue"
-    - "§d,#,Pink"
-    - "§5,#,Purple"
-    - "§f,#,White"
+    - "DARK_RED,#,Dark Red"
+    - "RED,#,Red"
+    - "GOLD,#,Orange"
+    - "YELLOW,#,Yellow"
+    - "DARK_GREEN,#,Dark Green"
+    - "GREEN,#,Green"
+    - "AQUA,#,Aqua"
+    - "DARK_BLUE,#,Dark Blue"
+    - "BLUE,#,Blue"
+    - "LIGHT_PURPLE,#,Pink"
+    - "DARK_PURPLE,#,Purple"
+    - "GRAY,#,Gray"
+    - "WHITE,#,White"
 
 Invicibility: 30 # Invicibility time at the start of the game, in seconds
 TimeBeforePvp: 20 # Time in minutes before PVP is enable

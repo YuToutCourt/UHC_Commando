@@ -11,6 +11,7 @@ import com.commando.uhc_commando.Commands.RuleCommand;
 import com.commando.uhc_commando.Commands.StartCommand;
 import com.commando.uhc_commando.Events.ChatEvents;
 import com.commando.uhc_commando.Events.DeathEvents;
+import com.commando.uhc_commando.Events.WinEvents;
 import com.commando.uhc_commando.Events.PlayerEvents;
 import com.commando.uhc_commando.Tasks.TimerTask;
 import com.commando.uhc_commando.Teams.Team;
@@ -38,7 +39,6 @@ public final class UHC_Commando extends JavaPlugin {
     public void onEnable() {
         this.saveDefaultConfig();
         CONFIG = this.getConfig();
-
         Bukkit.broadcastMessage("§a-------- Commando are ready ! ---------");
 
         this.getCommand("alert").setExecutor(new AlertCommand());
@@ -51,6 +51,7 @@ public final class UHC_Commando extends JavaPlugin {
         pm.registerEvents(new ChatEvents(), this);
         pm.registerEvents(new DeathEvents(this), this);
         pm.registerEvents(new PlayerEvents(this), this);
+        pm.registerEvents(new WinEvents(),this);
 
         WORLD = Bukkit.getWorld(CONFIG.getString("WorldName"));
 

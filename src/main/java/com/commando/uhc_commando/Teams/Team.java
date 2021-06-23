@@ -31,7 +31,7 @@ public class Team {
         ownedTeams = new HashSet<Team>();
         this.name = name;
         this.prefix = prefix.replace("&", "§");
-        this.color = ChatColor.getByChar(colorCode.charAt(1));
+        this.color = ChatColor.valueOf(colorCode);
         this.owner = null;
         this.leader = null;
     }
@@ -62,9 +62,9 @@ public class Team {
     }
 
     private void setPlayersName(String prefix) {
-        Player player = Bukkit.getPlayer(this.leader);
-        player.setDisplayName(prefix + " " + player.getName());
-        player.setPlayerListName(prefix + " " + player.getName());
+        Player player = getPlayerByUuid(this.leader);
+        player.setDisplayName(this.getColor() + prefix + " " + player.getName());
+        player.setPlayerListName(this.getColor() + prefix + " " + player.getName());
         for(Team team : this.ownedTeams) {
             team.setPlayersName(prefix);
         }
@@ -107,6 +107,7 @@ public class Team {
 
     public void setLeader(Player player) {
         this.leader = player.getUniqueId();
+        setPlayersName(this.getPrefix());
     }
 
     public Team getOwner() {
@@ -140,6 +141,14 @@ public class Team {
             if(team.leader.equals(owner.getUniqueId())) return true;
         }
         return false;
+    }
+
+    public Player getPlayerByUuid(UUID uuid){
+        for(Player p : Bukkit.getOnlinePlayers()){
+            if(p.getUniqueId().equals(uuid))
+                return p;
+        }
+        return null;
     }
 
     @Override

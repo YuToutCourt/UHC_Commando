@@ -32,7 +32,7 @@ public class StartCommand implements CommandExecutor {
     }
 
     public boolean start(CommandSender sender) {
-        Bukkit.broadcastMessage("§l> [SERVEUR] §cPréparation au lancement du §a§Commando UHC ... ");
+        Bukkit.broadcastMessage("§l> [SERVEUR] §cPréparation au lancement du §a§lCommando UHC ... ");
 
         if(Bukkit.getOnlinePlayers().size() > Team.teams.size()) {
             sender.sendMessage("There is more players than teams available, the game can't start!");
@@ -78,6 +78,7 @@ public class StartCommand implements CommandExecutor {
         TimerTask timer = new TimerTask(this.main);
         timer.runTaskTimer(this.main, 0, 20);
         TimerTask.setRunning(true);
+        timer.run();
 
         return true;
     }
