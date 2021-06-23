@@ -63,8 +63,8 @@ public class Team {
 
     private void setPlayersName(String prefix) {
         Player player = Bukkit.getPlayer(this.leader);
-        player.setCustomName(prefix + " " + player.getName());
-        player.setCustomNameVisible(true);
+        player.setDisplayName(prefix + " " + player.getName());
+        player.setPlayerListName(prefix + " " + player.getName());
         for(Team team : this.ownedTeams) {
             team.setPlayersName(prefix);
         }
@@ -72,7 +72,6 @@ public class Team {
 
     private void removePlayersName() {
         Player player = Bukkit.getPlayer(this.leader);
-        player.setCustomNameVisible(true);
         for(Team team : this.ownedTeams) {
             team.removePlayersName();
         }

@@ -48,7 +48,13 @@ public class PlayerEvents implements Listener {
         Player victim = (Player) event.getEntity();
         Player attacker = (Player) event.getDamager();
 
+        if(!TimerTask.RUN) {
+            event.setDamage(0);
+            event.setCancelled(true);
+        } 
+
         if(!Team.friendlyFire && Team.getTeamOf(victim).equals(Team.getTeamOf(attacker)))
+            event.setDamage(0);
             event.setCancelled(true);
     }
 

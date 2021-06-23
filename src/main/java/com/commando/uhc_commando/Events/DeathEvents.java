@@ -3,13 +3,14 @@ package com.commando.uhc_commando.Events;
 import com.commando.uhc_commando.UHC_Commando;
 import com.commando.uhc_commando.Teams.Team;
 
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class DeathEvents implements Listener {
 
@@ -23,32 +24,29 @@ public class DeathEvents implements Listener {
     public void onDeath(PlayerDeathEvent event) throws InterruptedException {
         Player victim = event.getEntity();
         Player attacker = victim.getKiller();
+        Location deathLocation = victim.getLocation();
 
-        this.main.WORLD.playSound(victim.getLocation(), Sound.ZOMBIE_REMEDY, 1000.0F, 1.0F);
+        this.main.WORLD.playSound(deathLocation, Sound.ZOMBIE_REMEDY, 1000.0F, 1.0F);
+        victim.spigot().respawn();
         victim.setGameMode(GameMode.SPECTATOR);
+        victim.teleport(deathLocation);
 
         if (!(attacker instanceof Player)) {
             event.setDeathMessage("§c§l† " + victim.getDisplayName()+ " died from PVE §c§l†");
-            victim.teleport(this.main.WORLD.getSpawnLocation());
-
         } else {
             event.setDeathMessage("§c§l† " + victim.getDisplayName()+ " was killed by " + attacker.getPlayerListName() + " §c§l†");
 
             // waiting 30 seconds
-            Bukkit.getScheduler().scheduleSyncRepeatingTask(this.main, new Runnable() {
-                int timer = 30;
+            BukkitRunnable task = new BukkitRunnable() {
+                @Override
                 public void run() {
-                    timer --;
-                    if(timer == 0) Thread.currentThread().interrupt();
+                    victim.teleport(attacker.getLocation());
+                    victim.setGameMode(GameMode.SURVIVAL);
+                    Team.getTeamOf(victim).join(Team.getTeamOf(attacker));
                 }
-            }, 0, 20);
+            };
+            task.runTaskLater(this.main, 20 * 30);
             
-            victim.teleport(attacker.getLocation());
-            victim.setGameMode(GameMode.SURVIVAL);
-            Team.getTeamOf(attacker).join(Team.getTeamOf(victim));
-
-
-
         }
     }
 }

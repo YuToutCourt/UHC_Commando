@@ -1,21 +1,12 @@
-- Faire un système de team (minecraft teams)
-
-- Système de hiérarchie dans la team et pouvoir voir l'inventaire des parties inférieures
-
-+ Join team on death
-
-- Bordure
+To fix :
 
 - Scoreboard
+? Join team don't set color
+- Inventory don't see armor
+- Can't hit after start
 
-- Config :
-    - Set the size of the border
-    - PvP timer / Border timer
-    - Disable some item : (notch apple, potion II, potion, strenght potion, fishing rod/snowball/egg, flame, fire aspect, horse)
-    - Nether On / Off
 
-+ Si partie déjà démarrée -> joueur en spectateur
 
-- Fin de partie quand il ne reste plus qu'une team en vie
 
-{Pour le moment rien de plus}
+Todo :
+    - Team message chat

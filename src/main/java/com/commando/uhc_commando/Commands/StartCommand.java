@@ -42,8 +42,11 @@ public class StartCommand implements CommandExecutor {
 
         this.main.WORLD.setDifficulty(Difficulty.PEACEFUL);
         this.main.WORLD.setTime(0);
+        int borderSize = (int) this.main.WORLD.getWorldBorder().getSize() / 2;
         // TODO alternative ?
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spreadplayers 0 0 10 200 false @a"); //x z DistanceEntreChaquePlayer MaxRangeSurLaTp team?
+        
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spreadplayers 0 0 " + borderSize / 10 + " "+ (borderSize - 10) +" false @a"); //x z DistanceEntreChaquePlayer MaxRangeSurLaTp team?
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gamerule naturalRegeneration false");
         int indexOfTeam = 0;
         for(Player player : Bukkit.getOnlinePlayers()) {
             // reset potion effects
