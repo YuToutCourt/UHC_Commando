@@ -32,7 +32,7 @@ public class StartCommand implements CommandExecutor {
     }
 
     public boolean start(CommandSender sender) {
-        Bukkit.broadcastMessage("§l> [SERVEUR] §cPréparation au lancement du §a§lCommando UHC ... ");
+        Bukkit.broadcastMessage("§l> [SERVER] §cSetting up the game start... ");
 
         if(Bukkit.getOnlinePlayers().size() > Team.teams.size()) {
             sender.sendMessage("There is more players than teams available, the game can't start!");

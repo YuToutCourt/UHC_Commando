@@ -21,24 +21,24 @@ public class Team {
     public static int leadingTeams;
 
     private final String name;
-    private final String prefix;
+    private final String symbol;
     private ChatColor color;
     private UUID leader;
     private Team owner;
     private Set<Team> ownedTeams;
 
-    public Team(String name, String prefix, String colorCode) {
+    public Team(String name, String symbol, String colorCode) {
         ownedTeams = new HashSet<Team>();
         this.name = name;
-        this.prefix = prefix.replace("&", "§");
-        this.color = ChatColor.valueOf(colorCode);
+        this.symbol = symbol.replace("&", "§");
+        this.color = ChatColor.valueOf(colorCode.toUpperCase());
         this.owner = null;
         this.leader = null;
     }
 
     public boolean join(Team teamToJoin) {
         this.leaveAll();
-        this.setPlayersName(teamToJoin.color + "[" + teamToJoin.prefix +"]");
+        this.setPlayersName(teamToJoin.color + "[" + teamToJoin.symbol +"]");
         this.owner = teamToJoin;
         leadingTeams --;
         return teamToJoin.ownedTeams.add(this);
@@ -46,7 +46,6 @@ public class Team {
 
     private boolean leave(Team teamToLeave) {
         if(this.ownedTeams.contains(this)) {
-            this.removePlayersName();
             teamToLeave.ownedTeams.remove(this);
             leadingTeams ++;
             return true;
@@ -62,18 +61,11 @@ public class Team {
     }
 
     private void setPlayersName(String prefix) {
-        Player player = getPlayerByUuid(this.leader);
-        player.setDisplayName(this.getColor() + prefix + " " + player.getName());
-        player.setPlayerListName(this.getColor() + prefix + " " + player.getName());
+        Player player = this.getLeader();
+        player.setDisplayName(prefix + " " + player.getName());
+        player.setPlayerListName(prefix + " " + player.getName());
         for(Team team : this.ownedTeams) {
             team.setPlayersName(prefix);
-        }
-    }
-
-    private void removePlayersName() {
-        Player player = Bukkit.getPlayer(this.leader);
-        for(Team team : this.ownedTeams) {
-            team.removePlayersName();
         }
     }
 
@@ -89,12 +81,8 @@ public class Team {
         return this.name;
     }
 
-    public String getPrefix() {
-        return this.prefix;
-    }
-
-    public void setColor(String colorCode) {
-        this.color = ChatColor.getByChar(colorCode.charAt(1));
+    public String getSymbol() {
+        return this.symbol;
     }
 
     public ChatColor getColor() {
@@ -107,7 +95,7 @@ public class Team {
 
     public void setLeader(Player player) {
         this.leader = player.getUniqueId();
-        setPlayersName(this.getPrefix());
+        this.setPlayersName(this.color + "[" + this.symbol +"]");
     }
 
     public Team getOwner() {
@@ -143,21 +131,13 @@ public class Team {
         return false;
     }
 
-    public Player getPlayerByUuid(UUID uuid){
-        for(Player p : Bukkit.getOnlinePlayers()){
-            if(p.getUniqueId().equals(uuid))
-                return p;
-        }
-        return null;
-    }
-
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((leader == null) ? 0 : leader.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((prefix == null) ? 0 : prefix.hashCode());
+        result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
         return result;
     }
 
@@ -175,9 +155,9 @@ public class Team {
             if (other.name != null) return false;
         } else if (!name.equals(other.name))
             return false;
-        if (prefix == null) {
-            if (other.prefix != null) return false;
-        } else if (!prefix.equals(other.prefix))
+        if (symbol == null) {
+            if (other.symbol != null) return false;
+        } else if (!symbol.equals(other.symbol))
             return false;
         return true;
     }
