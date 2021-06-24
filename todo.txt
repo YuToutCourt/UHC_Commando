@@ -1,7 +1,6 @@
 To fix :
 
 - Scoreboard
-? Join team don't set color
 - Inventory don't see armor
 - Can't hit after start
 
