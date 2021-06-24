@@ -100,7 +100,7 @@ public final class UHC_Commando extends JavaPlugin {
 		lines.add(SEPARATOR);
 		lines.add(TimerTask.formatTime(0, true));
 		lines.add(SEPARATOR);
-		lines.add(TimerTask.formatLine("Team", 0));
+		lines.add(TimerTask.formatLine("Teams", 0));
 		lines.add(TimerTask.formatLine("Your team", 0));
 		lines.add(SEPARATOR);
 		lines.add(TimerTask.formatLine("PvP", TimerTask.formatTime(0, false)));
