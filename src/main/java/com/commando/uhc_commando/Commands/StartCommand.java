@@ -47,6 +47,7 @@ public class StartCommand implements CommandExecutor {
         // TODO alternative ?
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spreadplayers 0 0 " + borderSize / 10 + " "+ (borderSize - 10) +" false @a"); //x z DistanceEntreChaquePlayer MaxRangeSurLaTp team?
         this.main.WORLD.setGameRuleValue("naturalRegeneration", "false");
+        this.main.WORLD.setGameRuleValue("doFireTick", "false");
         int indexOfTeam = 0;
         for(Player player : Bukkit.getOnlinePlayers()) {
             // reset potion effects

@@ -6,6 +6,9 @@ To fix :
 
 Todo :
     - Team message chat
+    - Health on tab
+    - every config check
+    - cut clean
 
 ------------------------------
 

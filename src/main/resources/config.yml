@@ -1,14 +1,15 @@
 Prefix: "&7[&c&lUHC&7]&r" #Prefix of chat
-WorldName: "world" # Name of the world played in
 Spawn: # Spawn coordinates
-  x: 0.5 # float
-  y: 250 # int
-  z: 0.5 # float
+  x: 0   # int x coordinate
+  y: 250 # int y coordinate
+  z: 0   # int z coordinate
 
-LengthDay: 20 # Lenght of a day in minutes
-DayLightCycle:
-  Enable: false # Infinite day if false
-  Hour: 6000 # If infinite day, time of the day to stay at
+World: 
+  WorldName: "world" # Name of the world played in
+  EnableDayNightCycle: true # Infinite day if false
+  HourOfDay: 6000 # If infinite day, time of the day to stay at
+  EnableFireSpreading: false # Stop the fire to spread (doFireTick gamerule)
+  BadWeather: false # Bad weather (rain) disabled if set to false
 
 ScoreboardTitle: "UHC Commando"
 
@@ -18,12 +19,10 @@ Achievement:
   DisableBeforeStart: true # Disable achievements before the beginning of the game
   ResetOnStart: true # Reset achievements at the start
   
-NotifIfTeamsFall: true # annoncer quand une team est vaincu
 Death:
   Lightning: false # Summon a lightning at the player death position
   Sound: true # Play a sound at the death of a player
 
-BadWeather: false # Bad weather (rain) disabled if set to 
 NotchApple: false # Allow or not notch apples
 LevelTwoPotions: false # Allow or not potion of level 2
 StrenghtPotions: false # Allow or not strenght potion
@@ -36,8 +35,6 @@ CutClean: false # Enable or not the Cut Clean scenario (autosmelting items)
 Teams:
   RandomTeam: true # Generates random team or not
   FriendlyFire: true # Enable or not friendly fire
-  DisplayJoinTeamMessage: true # Show message to join team on loggin before start
-  TimeBeforeSend: 2 # Time before sending the above message
   TeamChat: true # Enable or not team chat
   Teams: # color,symbol,name - splitted by comma
     - "DARK_RED,#,Dark Red"

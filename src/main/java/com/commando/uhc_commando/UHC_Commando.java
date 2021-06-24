@@ -53,7 +53,7 @@ public final class UHC_Commando extends JavaPlugin {
         pm.registerEvents(new PlayerEvents(this), this);
         pm.registerEvents(new WinEvents(),this);
 
-        WORLD = Bukkit.getWorld(CONFIG.getString("WorldName"));
+        WORLD = Bukkit.getWorld(CONFIG.getString("World.WorldName"));
 
         this.resetGame();
     }
