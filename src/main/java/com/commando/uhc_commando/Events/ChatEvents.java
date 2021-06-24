@@ -17,7 +17,7 @@ public class ChatEvents implements Listener {
             event.setCancelled(true);
             // TODO team chat message
         } else { // general message
-            event.setFormat("<- "+player.getDisplayName()+" -> "+message);
+            event.setFormat(player.getDisplayName() + "§r§7" + " > §r" + message);
         }
     }
 
