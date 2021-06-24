@@ -10,6 +10,7 @@ import com.commando.uhc_commando.Commands.InventoryCommand;
 import com.commando.uhc_commando.Commands.RuleCommand;
 import com.commando.uhc_commando.Commands.StartCommand;
 import com.commando.uhc_commando.Events.ChatEvents;
+import com.commando.uhc_commando.Events.CutCleanEvents;
 import com.commando.uhc_commando.Events.DeathEvents;
 import com.commando.uhc_commando.Events.WinEvents;
 import com.commando.uhc_commando.Events.PlayerEvents;
@@ -52,6 +53,7 @@ public final class UHC_Commando extends JavaPlugin {
         pm.registerEvents(new DeathEvents(this), this);
         pm.registerEvents(new PlayerEvents(this), this);
         pm.registerEvents(new WinEvents(),this);
+        if(CONFIG.getBoolean("CutClean")){pm.registerEvents(new CutCleanEvents(), this);}
 
         WORLD = Bukkit.getWorld(CONFIG.getString("World.WorldName"));
 
