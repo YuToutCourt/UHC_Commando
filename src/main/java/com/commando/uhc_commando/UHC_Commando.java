@@ -68,7 +68,6 @@ public final class UHC_Commando extends JavaPlugin {
         WORLD.setSpawnLocation(CONFIG.getInt("Spawn.x"), CONFIG.getInt("Spawn.y"), CONFIG.getInt("Spawn.z"));
         WORLD.getWorldBorder().setCenter(WORLD.getSpawnLocation());
         WORLD.getWorldBorder().setSize(CONFIG.getInt("Border.StartSize"));
-        TimerTask.setWordborderTimer(CONFIG.getInt("Border.TimeBeforeMoving"));
 
         // Reset teams
         List<String> teams = CONFIG.getStringList("Teams.Teams");
@@ -87,11 +86,9 @@ public final class UHC_Commando extends JavaPlugin {
             Team.teams.add(new Team(splitTeam[2], splitTeam[1], splitTeam[0]));
         }
 
-        /*
-         * TODO
-         * reset timer
-         * 
-         */
+        TimerTask.setRunning(false);
+        TimerTask.setPVPtimer(CONFIG.getInt("TimeBeforePvp"));
+        TimerTask.setWordborderTimer(CONFIG.getInt("Border.TimeBeforeMoving"));
     }
 
     public FastBoard createBoard(Player player) {

@@ -18,7 +18,6 @@ public class Team {
     public static boolean friendlyFire;
     public static boolean chatEnable;
     public static List<Team> teams = new ArrayList<Team>();
-    public static int leadingTeams;
 
     private final String name;
     private final String symbol;
@@ -40,14 +39,12 @@ public class Team {
         this.leaveAll();
         this.setPlayersName(teamToJoin.color + "[" + teamToJoin.symbol +"]");
         this.owner = teamToJoin;
-        leadingTeams --;
         return teamToJoin.ownedTeams.add(this);
     }
 
     private boolean leave(Team teamToLeave) {
         if(this.ownedTeams.contains(this)) {
             teamToLeave.ownedTeams.remove(this);
-            leadingTeams ++;
             return true;
         }
         return false;
@@ -129,6 +126,15 @@ public class Team {
             if(team.leader.equals(owner.getUniqueId())) return true;
         }
         return false;
+    }
+
+    
+    public static int getLeadingTeamsAmount() {
+        int res = 0;
+        for(Team team : Team.teams) {
+            if(team.owner == null) res ++;
+        }
+        return res;
     }
 
     @Override

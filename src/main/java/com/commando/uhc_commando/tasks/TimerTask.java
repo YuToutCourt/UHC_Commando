@@ -12,12 +12,12 @@ import fr.mrmicky.fastboard.FastBoard;
 public class TimerTask extends BukkitRunnable {
 
 	public static boolean RUN = false;
-	private static int time;
+	private static int time = 0;
 
-	public static int WBtime;
+	public static int WBtime = 0;
 	private int WBstate = 0;
 
-	public static int PvPtime;
+	public static int PvPtime = 0;
 
 	private UHC_Commando main;
 	
@@ -57,11 +57,11 @@ public class TimerTask extends BukkitRunnable {
 	}
 
 	public static void setWordborderTimer(int minutes) {
-		WBtime = minutes*60;
+		WBtime = minutes * 60;
 	}
 
-	public static void setPVPtimer(int seconds) {
-		PvPtime = seconds;
+	public static void setPVPtimer(int minutes) {
+		PvPtime = minutes * 60;
 	}
 	
 	public static String formatTime(int secs, boolean printHour) {
@@ -86,7 +86,7 @@ public class TimerTask extends BukkitRunnable {
     private void updateBoards() {
         for(FastBoard board : this.main.boards) {
 			board.updateLine(1, formatTime(time, true));
-			board.updateLine(3, formatLine("Team", Team.leadingTeams));
+			board.updateLine(3, formatLine("Team", Team.getLeadingTeamsAmount()));
 			board.updateLine(4, formatLine("Your team", Team.getTeamOf(board.getPlayer()).getPlayerAmount()));
 			if(PvPtime > 0) board.updateLine(6, formatLine("PvP", formatTime(PvPtime, false)));
 			else board.updateLine(6, formatLine("PvP", "ON", ChatColor.GREEN));

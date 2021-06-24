@@ -13,7 +13,7 @@ public class WinEvents implements Listener {
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event){
-        if (Team.leadingTeams == 1){
+        if (Team.getLeadingTeamsAmount() == 1){
             Bukkit.broadcastMessage("End of the game! The team "+ Team.getWinner() +" won!");
         }
     }

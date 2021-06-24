@@ -1,6 +1,8 @@
 To fix :
 
 - Scoreboard
+    ? Teams amount
+    - PvP on start
 - Inventory don't see armor
 - Can't hit after start
 
