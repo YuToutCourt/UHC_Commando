@@ -37,7 +37,7 @@ public class Team {
 
     public boolean join(Team teamToJoin) {
         this.leaveAll();
-        this.setPlayersName(teamToJoin.color + "[" + teamToJoin.symbol +"]");
+        this.setTeamMembersName(teamToJoin.color + "[" + teamToJoin.symbol +"]");
         this.owner = teamToJoin;
         return teamToJoin.ownedTeams.add(this);
     }
@@ -57,12 +57,16 @@ public class Team {
         this.owner = null;
     }
 
-    private void setPlayersName(String prefix) {
+    public void setPlayerName(String prefix) {
         Player player = this.getLeader();
         player.setDisplayName(prefix + " " + player.getName());
         player.setPlayerListName(prefix + " " + player.getName());
+    }
+
+    private void setTeamMembersName(String prefix) {
+        this.setPlayerName(prefix);
         for(Team team : this.ownedTeams) {
-            team.setPlayersName(prefix);
+            team.setTeamMembersName(prefix);
         }
     }
 
@@ -92,7 +96,7 @@ public class Team {
 
     public void setLeader(Player player) {
         this.leader = player.getUniqueId();
-        this.setPlayersName(this.color + "[" + this.symbol +"]");
+        this.setTeamMembersName(this.color + "[" + this.symbol +"]");
     }
 
     public Team getOwner() {
@@ -106,9 +110,19 @@ public class Team {
     public static Team getTeamOf(Player player) {
         UUID uuid = player.getUniqueId();
         for(Team team : Team.teams) {
+            if(team.leader == null) continue;
             if(team.leader.equals(uuid)) return team;
         }
         return null;
+    }
+
+    public static Team getLeadingTeamOf(Player player) {
+        Team team = getTeamOf(player);
+        if(team == null) return null;
+        while(team.getOwner() != null) {
+            team = team.getOwner();
+        }
+        return team;
     }
 
     public static Team getWinner() {

@@ -1,6 +1,4 @@
 To fix :
-    - Scoreboard
-        ? Teams amount
     - Inventory don't see armor
     - Can't hit after start
 

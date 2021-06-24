@@ -23,6 +23,10 @@ public class PlayerEvents implements Listener {
     @EventHandler
     public void playerJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
+        Team team = Team.getLeadingTeamOf(player);
+        if(team != null) {
+            team.setPlayerName(team.getColor() + "[" + team.getSymbol() +"]");
+        }
         event.setJoinMessage("§7[§3+§7] " + player.getDisplayName());
         this.main.boards.add(this.main.createBoard(player));
 
