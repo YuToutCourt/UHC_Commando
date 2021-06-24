@@ -4,6 +4,7 @@ import com.commando.uhc_commando.UHC_Commando;
 import com.commando.uhc_commando.Teams.Team;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -45,7 +46,8 @@ public class TimerTask extends BukkitRunnable {
 
 			if(PvPtime == 0) { // turn pvp on
 				this.main.PVP = true;
-				Bukkit.broadcastMessage("PvP is now enable!");
+				this.main.WORLD.playSound(this.main.WORLD.getSpawnLocation(), Sound.WOLF_GROWL, 1000.0F, 1.0F);
+				Bukkit.broadcastMessage("§c§lPvP is now enable!");
 				PvPtime --; // avoid entering this "if" infinitely
 			}
 		}
@@ -95,12 +97,13 @@ public class TimerTask extends BukkitRunnable {
         }
 	}
 
-	private void moveWorldBorder() { 
+	private void moveWorldBorder() {
+		this.main.WORLD.playSound(this.main.WORLD.getSpawnLocation(), Sound.ANVIL_LAND, 1000.0F, 1.0F);
 		int endSize = this.main.CONFIG.getInt("Border.EndSize");
 		int duration = this.main.CONFIG.getInt("Border.MovingDuration");
 		WBtime = duration;
 		this.main.WORLD.getWorldBorder().setSize(endSize, duration);
-		Bukkit.broadcastMessage("Border is now moving");
+		Bukkit.broadcastMessage("§c§lBorder is now moving");
 	}
 }
  

@@ -34,7 +34,7 @@ CutClean: false # Enable or not the Cut Clean scenario (autosmelting items)
 
 Teams:
   RandomTeam: true # Generates random team or not
-  FriendlyFire: true # Enable or not friendly fire
+  FriendlyFire: false # Enable or not friendly fire
   TeamChat: true # Enable or not team chat
   Teams: # color,symbol,name - splitted by comma
     - "DARK_RED,#,Dark Red"

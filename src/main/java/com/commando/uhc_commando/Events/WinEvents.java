@@ -9,12 +9,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 
+
 public class WinEvents implements Listener {
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event){
         if (Team.getLeadingTeamsAmount() == 1){
-            Bukkit.broadcastMessage("End of the game! The team "+ Team.getWinner() +" won!");
+            Bukkit.broadcastMessage("§aEnd of the game! The "+ Team.getWinner().getColor() + Team.getWinner().getName() +" §ateam won!");
         }
     }
 }

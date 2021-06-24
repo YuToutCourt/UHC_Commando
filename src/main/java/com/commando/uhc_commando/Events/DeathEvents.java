@@ -32,9 +32,9 @@ public class DeathEvents implements Listener {
         victim.teleport(deathLocation);
 
         if (!(attacker instanceof Player)) {
-            event.setDeathMessage("§c§l† " + victim.getDisplayName()+ " died from PVE §c§l†");
+            event.setDeathMessage("§c§l† §r" + victim.getDisplayName() + " §c§ldied from PVE §c§l†");
         } else {
-            event.setDeathMessage("§c§l† " + victim.getDisplayName()+ " was killed by " + attacker.getPlayerListName() + " §c§l†");
+            event.setDeathMessage("§c§l† §r" + victim.getDisplayName()+ " §c§lwas killed by " + attacker.getPlayerListName() + " §c§l†");
 
             // waiting 30 seconds
             BukkitRunnable task = new BukkitRunnable() {
