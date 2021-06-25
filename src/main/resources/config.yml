@@ -20,9 +20,9 @@ Death:
   Lightning: true # Summon a lightning at the player death position ✔️
   Sound: true # Play a sound at the death of a player ✔️
 
-NotchApple: false # Allow or not notch apples
-LevelTwoPotions: false # Allow or not potion of level 2
-StrenghtPotions: false # Allow or not strenght potion
+NotchApple: false # Allow or not notch apples ✔️
+LevelTwoPotions: false # Allow or not potion of level 2 ✔️
+StrenghtPotions: false # Allow or not strenght potion ✔️
 ProjectilesKnockback: false # Allow or not fishing rod, snowball and eggs knockback for PvP
 AllowNether: true # Allow or not the nether
 AllowHorse: true # Allow or not horses

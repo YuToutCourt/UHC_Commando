@@ -10,6 +10,9 @@ import com.commando.uhc_commando.Commands.InventoryCommand;
 import com.commando.uhc_commando.Commands.RuleCommand;
 import com.commando.uhc_commando.Commands.StartCommand;
 import com.commando.uhc_commando.Events.AchivementEvent;
+import com.commando.uhc_commando.Events.AntiCraftEventNotch;
+import com.commando.uhc_commando.Events.AntiCraftPotLevel2;
+import com.commando.uhc_commando.Events.AntiCraftStrenghtPotionEvent;
 import com.commando.uhc_commando.Events.ChatEvents;
 import com.commando.uhc_commando.Events.CutCleanEvents;
 import com.commando.uhc_commando.Events.DeathEvents;
@@ -58,6 +61,9 @@ public final class UHC_Commando extends JavaPlugin {
         if(CONFIG.getBoolean("CutClean")){pm.registerEvents(new CutCleanEvents(), this);}
         if(!CONFIG.getBoolean("World.BadWeather")){pm.registerEvents(new WeatherEvent(), this);}
         if(CONFIG.getBoolean("DisableAchivements")){pm.registerEvents(new AchivementEvent(), this);}
+        if(!CONFIG.getBoolean("NotchApple")){pm.registerEvents(new AntiCraftEventNotch(), this);}
+        if(!CONFIG.getBoolean("NotchApple")){pm.registerEvents(new AntiCraftStrenghtPotionEvent(), this);}
+        if(!CONFIG.getBoolean("NotchApple")){pm.registerEvents(new AntiCraftPotLevel2(), this);}
 
         WORLD = Bukkit.getWorld(CONFIG.getString("World.WorldName"));
 
