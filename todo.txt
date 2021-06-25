@@ -4,9 +4,9 @@ To fix :
 
 Todo :
     - Team message chat
-    - Health on tab
+    + Health on tab (je sais pas si c'est possible autrement que ce que j'ai fait maos je l'ai fait)
     - every config check
-    - cut clean
+    + cut clean
 
 ------------------------------
 
