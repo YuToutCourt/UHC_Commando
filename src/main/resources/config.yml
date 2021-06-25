@@ -6,22 +6,19 @@ Spawn: # Spawn coordinates
 
 World: 
   WorldName: "world" # Name of the world played in
-  EnableDayNightCycle: true # Infinite day if false
-  HourOfDay: 6000 # If infinite day, time of the day to stay at
-  EnableFireSpreading: false # Stop the fire to spread (doFireTick gamerule)
-  BadWeather: false # Bad weather (rain) disabled if set to false
+  EnableDayNightCycle: true # Infinite day if false ✔️
+  HourOfDay: 6000 # If infinite day, time of the day to stay at ✔️
+  EnableFireSpreading: false # Stop the fire to spread (doFireTick gamerule) ✔️
+  BadWeather: false # Bad weather (rain) disabled if set to false ✔️
 
 ScoreboardTitle: "UHC Commando"
 
-TabHealth: true # Show health in tab board
-SpecIfStart: true # Set to spectator player if joining after start
-Achievement:
-  DisableBeforeStart: true # Disable achievements before the beginning of the game
-  ResetOnStart: true # Reset achievements at the start
+TabHealth: false # Show health in tab board ✔️
+DisableAchivements: true # Disable achievements during the game ✔️
   
 Death:
-  Lightning: false # Summon a lightning at the player death position
-  Sound: true # Play a sound at the death of a player
+  Lightning: true # Summon a lightning at the player death position ✔️
+  Sound: true # Play a sound at the death of a player ✔️
 
 NotchApple: false # Allow or not notch apples
 LevelTwoPotions: false # Allow or not potion of level 2
@@ -30,10 +27,9 @@ ProjectilesKnockback: false # Allow or not fishing rod, snowball and eggs knockb
 AllowNether: true # Allow or not the nether
 AllowHorse: true # Allow or not horses
 FireAndFlame: true # Allow or not fire aspect and flame enchantments
-CutClean: false # Enable or not the Cut Clean scenario (autosmelting items)
+CutClean: true # Enable or not the Cut Clean scenario (autosmelting items)
 
 Teams:
-  RandomTeam: true # Generates random team or not
   FriendlyFire: false # Enable or not friendly fire
   TeamChat: true # Enable or not team chat
   Teams: # color,symbol,name - splitted by comma

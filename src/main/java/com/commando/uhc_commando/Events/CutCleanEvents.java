@@ -2,10 +2,10 @@ package com.commando.uhc_commando.Events;
 
 import java.util.Random;
 
+
 import org.bukkit.event.Listener;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-
 import org.bukkit.entity.Player;
 
 import org.bukkit.event.EventHandler;
@@ -45,10 +45,11 @@ public class CutCleanEvents implements Listener {
 
         switch (event.getEntityType()){
             case COW:
+            case MUSHROOM_COW:
                 event.getDrops().clear();
                 event.getDrops().add(new ItemStack(Material.COOKED_BEEF, 3));
                 if(getExtratItem == 1) 
-                    event.getDrops().add(new ItemStack(Material.LEATHER));
+                    event.getDrops().add(new ItemStack(Material.LEATHER,2)); 
                 return;
 
             case CHICKEN:
@@ -71,13 +72,6 @@ public class CutCleanEvents implements Listener {
             case RABBIT:
                 event.getDrops().clear();
                 event.getDrops().add(new ItemStack(Material.COOKED_RABBIT, 2));
-                return;
-            
-            case MUSHROOM_COW:
-                event.getDrops().clear();
-                event.getDrops().add(new ItemStack(Material.COOKED_BEEF, 3));
-                if(getExtratItem == 1) 
-                    event.getDrops().add(new ItemStack(Material.LEATHER));
                 return;
             
             default:

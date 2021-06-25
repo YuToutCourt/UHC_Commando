@@ -46,10 +46,21 @@ public class StartCommand implements CommandExecutor {
 
         // TODO alternative ?
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spreadplayers 0 0 " + borderSize / 10 + " "+ (borderSize - 10) +" false @a"); //x z DistanceEntreChaquePlayer MaxRangeSurLaTp team?
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"scoreboard objectives add vie health");
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"scoreboard objectives setdisplay list vie");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"scoreboard objectives remove vie");
+        if(this.main.CONFIG.getBoolean("TabHealth")){
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"scoreboard objectives add vie health");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"scoreboard objectives setdisplay list vie");
+        }
+
+
         this.main.WORLD.setGameRuleValue("naturalRegeneration", "false");
-        this.main.WORLD.setGameRuleValue("doFireTick", "false");
+        this.main.WORLD.setGameRuleValue("doFireTick", this.main.CONFIG.getString("World.EnableFireSpreading"));
+        if(!main.CONFIG.getBoolean("World.EnableDayNightCycle")){
+            this.main.WORLD.setGameRuleValue("doDaylightCycle", "false");
+            this.main.WORLD.setTime(this.main.CONFIG.getInt("World.HourOfDay"));
+        }
+
+
         int indexOfTeam = 0;
         for(Player player : Bukkit.getOnlinePlayers()) {
             // reset potion effects

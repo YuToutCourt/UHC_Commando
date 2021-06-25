@@ -9,11 +9,13 @@ import com.commando.uhc_commando.Commands.CreateSpawnCommand;
 import com.commando.uhc_commando.Commands.InventoryCommand;
 import com.commando.uhc_commando.Commands.RuleCommand;
 import com.commando.uhc_commando.Commands.StartCommand;
+import com.commando.uhc_commando.Events.AchivementEvent;
 import com.commando.uhc_commando.Events.ChatEvents;
 import com.commando.uhc_commando.Events.CutCleanEvents;
 import com.commando.uhc_commando.Events.DeathEvents;
 import com.commando.uhc_commando.Events.WinEvents;
 import com.commando.uhc_commando.Events.PlayerEvents;
+import com.commando.uhc_commando.Events.WeatherEvent;
 import com.commando.uhc_commando.Tasks.TimerTask;
 import com.commando.uhc_commando.Teams.Team;
 
@@ -54,6 +56,8 @@ public final class UHC_Commando extends JavaPlugin {
         pm.registerEvents(new PlayerEvents(this), this);
         pm.registerEvents(new WinEvents(),this);
         if(CONFIG.getBoolean("CutClean")){pm.registerEvents(new CutCleanEvents(), this);}
+        if(!CONFIG.getBoolean("World.BadWeather")){pm.registerEvents(new WeatherEvent(), this);}
+        if(CONFIG.getBoolean("DisableAchivements")){pm.registerEvents(new AchivementEvent(), this);}
 
         WORLD = Bukkit.getWorld(CONFIG.getString("World.WorldName"));
 

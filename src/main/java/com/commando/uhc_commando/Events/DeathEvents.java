@@ -6,6 +6,7 @@ import com.commando.uhc_commando.Teams.Team;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Sound;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,7 +27,15 @@ public class DeathEvents implements Listener {
         Player attacker = victim.getKiller();
         Location deathLocation = victim.getLocation();
 
-        this.main.WORLD.playSound(deathLocation, Sound.ZOMBIE_REMEDY, 1000.0F, 1.0F);
+        if(this.main.CONFIG.getBoolean("Death.Sound")){
+            this.main.WORLD.playSound(deathLocation, Sound.ZOMBIE_REMEDY, 1000.0F, 1.0F);
+        }
+
+        if(this.main.CONFIG.getBoolean("Death.Lightning")){
+            this.main.WORLD.spawnEntity(deathLocation,EntityType.LIGHTNING);
+        }
+
+        
         victim.spigot().respawn();
         victim.setGameMode(GameMode.SPECTATOR);
         victim.teleport(deathLocation);
