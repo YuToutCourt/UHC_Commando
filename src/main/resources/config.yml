@@ -25,9 +25,9 @@ NotchApple: false # Allow or not notch apples ✔️
 LevelTwoPotions: false # Allow or not potion of level 2 ✔️
 StrenghtPotions: false # Allow or not strenght potion ✔️
 ProjectilesKnockback: false # Allow or not fishing rod, snowball and eggs knockback for PvP ✔️
-AllowNether: true # Allow or not the nether
+AllowNether: true # Allow or not the nether ✔️
 AllowHorse: true # Allow or not horses ✔️
-FireAndFlame: true # Allow or not fire aspect and flame enchantments
+FireAndFlame: true # Allow or not fire aspect and flame enchantments ✔️
 CutClean: true # Enable or not the Cut Clean scenario (autosmelting items) ✔️
 
 Teams: #✔️
