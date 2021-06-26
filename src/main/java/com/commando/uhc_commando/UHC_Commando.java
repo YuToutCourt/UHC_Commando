@@ -18,6 +18,7 @@ import com.commando.uhc_commando.Events.CutCleanEvents;
 import com.commando.uhc_commando.Events.DeathEvents;
 import com.commando.uhc_commando.Events.WinEvents;
 import com.commando.uhc_commando.Events.PlayerEvents;
+import com.commando.uhc_commando.Events.ProjectifCancelEvent;
 import com.commando.uhc_commando.Events.WeatherEvent;
 import com.commando.uhc_commando.Tasks.TimerTask;
 import com.commando.uhc_commando.Teams.Team;
@@ -64,9 +65,8 @@ public final class UHC_Commando extends JavaPlugin {
         if(!CONFIG.getBoolean("NotchApple")){pm.registerEvents(new AntiCraftEventNotch(), this);}
         if(!CONFIG.getBoolean("NotchApple")){pm.registerEvents(new AntiCraftStrenghtPotionEvent(), this);}
         if(!CONFIG.getBoolean("NotchApple")){pm.registerEvents(new AntiCraftPotLevel2(), this);}
-
+        if(!CONFIG.getBoolean("ProjectilesKnockback")){pm.registerEvents(new ProjectifCancelEvent(), this);}
         WORLD = Bukkit.getWorld(CONFIG.getString("World.WorldName"));
-
         this.resetGame();
     }
 

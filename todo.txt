@@ -4,10 +4,10 @@ To fix :
 
 Todo :
     - Team message chat
-    + Health on tab (je sais pas si c'est possible autrement que ce que j'ai fait mais je l'ai fait)
     - every config check
-    + cut clean
-
+    - Event for disable Nether
+    - Event for disable Horse
+    - Event for disable Fire and flamme on enchetement 
 ------------------------------
 
 §4 -> Dark Red
