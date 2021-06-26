@@ -49,7 +49,7 @@ Teams: #✔️
     - "WHITE,#,White"
 
 Invicibility: 30 # Invicibility time at the start of the game, in seconds ✔️
-TimeBeforePvp: 20 # Time in minutes before PVP is enable ✔️
+TimeBeforePvp: 1 # Time in minutes before PVP is enable ✔️
 
 Border: #✔️
   StartSize: 2000 # Initial size (width) of the border 

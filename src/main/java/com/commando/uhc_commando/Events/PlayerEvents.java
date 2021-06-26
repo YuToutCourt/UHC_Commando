@@ -47,29 +47,17 @@ public class PlayerEvents implements Listener {
 
     @EventHandler
     public void damageEvent(EntityDamageByEntityEvent event) {
-        // Une fois le pvp actif rien ne marche. J'ai pas compris
-
         if(!(event.getEntity() instanceof Player))  return;
         if(!(event.getDamager() instanceof Player)) return;
         Player victim = (Player) event.getEntity();
         Player attacker = (Player) event.getDamager();
-
-        if(!TimerTask.RUN) {
-            attacker.sendMessage("§cThe game has not started yet !");
-            event.setCancelled(true);
-            return;
-        }
-
-        if(!this.main.PVP){
-            attacker.sendMessage("§cPvp is not enable yet !");
-            event.setCancelled(true);
-            return;
-        }
-
-        if(!Team.friendlyFire && Team.getTeamOf(victim).equals(Team.getTeamOf(attacker)))
+        // Condition ne marche pas car personne n'est vraiment dans la même team
+        if(!Team.friendlyFire && Team.getTeamOf(victim).equals(Team.getTeamOf(attacker))){
             attacker.sendMessage("§cYou can't hit your teammate !");
             event.setCancelled(true);
             return;
+        }
     }
+
 
 }

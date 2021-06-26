@@ -44,14 +44,20 @@ public class DeathEvents implements Listener {
             event.setDeathMessage("§c§l† §r" + victim.getDisplayName() + " §c§ldied from PVE §c§l†");
         } else {
             event.setDeathMessage("§c§l† §r" + victim.getDisplayName()+ " §c§lwas killed by " + attacker.getPlayerListName() + " §c§l†");
-
+            Team.getTeamOf(victim).join(Team.getTeamOf(attacker));
             // waiting 30 seconds
             BukkitRunnable task = new BukkitRunnable() {
                 @Override
                 public void run() {
                     victim.teleport(attacker.getLocation());
                     victim.setGameMode(GameMode.SURVIVAL);
-                    Team.getTeamOf(victim).join(Team.getTeamOf(attacker));
+                    /*
+                    if(attacker.getGameMode().equals(GameMode.SURVIVAL)){
+                        victim.teleport(attacker.getLocation());
+                        victim.setGameMode(GameMode.SURVIVAL);
+                    }else {
+                        //run();
+                    */
                 }
             };
             task.runTaskLater(this.main, 20 * 30);

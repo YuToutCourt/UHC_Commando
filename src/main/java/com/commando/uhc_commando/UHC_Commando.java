@@ -74,6 +74,7 @@ public final class UHC_Commando extends JavaPlugin {
         if(!CONFIG.getBoolean("FireAndFlame")){pm.registerEvents(new EnchantFireCancelEvent(),this);}
 
         WORLD = Bukkit.getWorld(CONFIG.getString("World.WorldName"));
+        WORLD.setPVP(false);
         this.resetGame();
     }
 

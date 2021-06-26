@@ -46,6 +46,7 @@ public class TimerTask extends BukkitRunnable {
 
 			if(PvPtime == 0) { // turn pvp on
 				this.main.PVP = true;
+				this.main.WORLD.setPVP(true);
 				this.main.WORLD.playSound(this.main.WORLD.getSpawnLocation(), Sound.WOLF_GROWL, 1000.0F, 1.0F);
 				Bukkit.broadcastMessage("§c§lPvP is now enable!");
 				PvPtime --; // avoid entering this "if" infinitely
