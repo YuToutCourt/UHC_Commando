@@ -1,8 +1,5 @@
 package com.commando.uhc_commando.Events;
 
-
-
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,7 +20,7 @@ public class AntiCraftEventNotch implements Listener {
         ItemStack itemCrafted = event.getRecipe().getResult();
         if(itemCrafted.getType() == Material.GOLDEN_APPLE){
             if (itemCrafted.getDurability() == 1) {
-                player.sendMessage(ChatColor.DARK_RED + "§l[SERVER] > Notch apples as been disable");
+                player.sendMessage("§4§l[SERVER] > Notch apples as been disable");
                 event.setCancelled(true);
             }
         }

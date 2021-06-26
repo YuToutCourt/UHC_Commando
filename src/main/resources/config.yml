@@ -4,19 +4,19 @@ Spawn: # Spawn coordinates ✔️
   y: 250 # int y coordinate
   z: 0   # int z coordinate
 
-World: ✔️
+World: #✔️
   WorldName: "world" # Name of the world played in 
   EnableDayNightCycle: true # Infinite day if false 
   HourOfDay: 6000 # If infinite day, time of the day to stay at 
   EnableFireSpreading: false # Stop the fire to spread (doFireTick gamerule) 
   BadWeather: false # Bad weather (rain) disabled if set to false 
 
-ScoreboardTitle: "UHC Commando" ✔️
+ScoreboardTitle: "UHC Commando" #✔️
 
 TabHealth: false # Show health in tab board ✔️
 DisableAchivements: true # Disable achievements during the game ✔️
   
-Death: ✔️
+Death: #✔️
   # Je vois pas l'éclaire mais j'enttend bien le son. Va savoir si c'est mon pc ou alors c'est moi qui est mal coder
   Lightning: true # Summon a lightning at the player death position 
   Sound: true # Play a sound at the death of a player 
@@ -26,11 +26,11 @@ LevelTwoPotions: false # Allow or not potion of level 2 ✔️
 StrenghtPotions: false # Allow or not strenght potion ✔️
 ProjectilesKnockback: false # Allow or not fishing rod, snowball and eggs knockback for PvP ✔️
 AllowNether: true # Allow or not the nether
-AllowHorse: true # Allow or not horses
+AllowHorse: true # Allow or not horses ✔️
 FireAndFlame: true # Allow or not fire aspect and flame enchantments
 CutClean: true # Enable or not the Cut Clean scenario (autosmelting items) ✔️
 
-Teams: ✔️
+Teams: #✔️
   FriendlyFire: false # Enable or not friendly fire
   TeamChat: true # Enable or not team chat
   Teams: # color,symbol,name - splitted by comma 
@@ -51,7 +51,7 @@ Teams: ✔️
 Invicibility: 30 # Invicibility time at the start of the game, in seconds ✔️
 TimeBeforePvp: 20 # Time in minutes before PVP is enable ✔️
 
-Border: ✔️
+Border: #✔️
   StartSize: 2000 # Initial size (width) of the border 
   TimeBeforeMoving: 60 # Amount of time in minutes before the border starts moving 
   EndSize: 500 # Final size of the border 

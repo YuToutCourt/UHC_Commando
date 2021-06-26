@@ -4,7 +4,6 @@ import org.bukkit.event.Listener;
 
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.block.Block;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,7 +20,7 @@ public class AntiCraftPotLevel2 implements Listener{
             block.getDrops().clear();
             event.setCancelled(true);
             block.setType(Material.AIR);
-            player.sendMessage(ChatColor.DARK_RED + "§l[SERVER] > Potion level 2 as been disable");
+            player.sendMessage("§4§l[SERVER] > Potion level 2 as been disable");
         }
     }
     

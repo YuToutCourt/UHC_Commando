@@ -16,6 +16,8 @@ import com.commando.uhc_commando.Events.AntiCraftStrenghtPotionEvent;
 import com.commando.uhc_commando.Events.ChatEvents;
 import com.commando.uhc_commando.Events.CutCleanEvents;
 import com.commando.uhc_commando.Events.DeathEvents;
+import com.commando.uhc_commando.Events.HorseCancelEvent;
+import com.commando.uhc_commando.Events.NetherCancelEvent;
 import com.commando.uhc_commando.Events.WinEvents;
 import com.commando.uhc_commando.Events.PlayerEvents;
 import com.commando.uhc_commando.Events.ProjectifCancelEvent;
@@ -66,6 +68,9 @@ public final class UHC_Commando extends JavaPlugin {
         if(!CONFIG.getBoolean("NotchApple")){pm.registerEvents(new AntiCraftStrenghtPotionEvent(), this);}
         if(!CONFIG.getBoolean("NotchApple")){pm.registerEvents(new AntiCraftPotLevel2(), this);}
         if(!CONFIG.getBoolean("ProjectilesKnockback")){pm.registerEvents(new ProjectifCancelEvent(), this);}
+        if(!CONFIG.getBoolean("AllowHorse")){pm.registerEvents(new HorseCancelEvent(),this);}
+        if(!CONFIG.getBoolean("AllowNether")){pm.registerEvents(new NetherCancelEvent(),this);}
+
         WORLD = Bukkit.getWorld(CONFIG.getString("World.WorldName"));
         this.resetGame();
     }

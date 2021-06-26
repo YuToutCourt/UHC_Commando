@@ -7,10 +7,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
-
-import net.md_5.bungee.api.ChatColor;
+//import org.bukkit.event.inventory.InventoryClickEvent;
+//import org.bukkit.event.inventory.InventoryType;
 
 public class AntiCraftStrenghtPotionEvent implements Listener{
 
@@ -35,7 +33,7 @@ public class AntiCraftStrenghtPotionEvent implements Listener{
         ItemStack itemStack = event.getRecipe().getResult();
         if (itemStack.getType() == Material.BLAZE_POWDER)
         {
-            player.sendMessage(ChatColor.DARK_RED + "§l[SERVER] > Potion of strenght as been disable");
+            player.sendMessage("§4§l[SERVER] > Potion of strenght as been disable");
             event.setCancelled(true);
         }
     }
