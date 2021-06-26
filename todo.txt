@@ -1,13 +1,12 @@
 To fix :
-    - Inventory don't see armor
+    - On the command /inv don't see armor
     - Can't hit after start
+    - Soon we will find so random and stupid bugs
 
 Todo :
     - Team message chat
-    - every config check
-    - Event for disable Nether
-    - Event for disable Horse
-    - Event for disable Fire and flamme on enchetement 
+
+
 ------------------------------
 
 §4 -> Dark Red
