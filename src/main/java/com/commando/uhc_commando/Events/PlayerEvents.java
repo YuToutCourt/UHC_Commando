@@ -52,7 +52,7 @@ public class PlayerEvents implements Listener {
         Player victim = (Player) event.getEntity();
         Player attacker = (Player) event.getDamager();
         // Condition ne marche pas car personne n'est vraiment dans la même team
-        if(!Team.friendlyFire && Team.getTeamOf(victim).equals(Team.getTeamOf(attacker))){
+        if(!Team.friendlyFire && Team.getLeadingTeamOf(victim).equals(Team.getLeadingTeamOf(attacker))){
             attacker.sendMessage("§cYou can't hit your teammate !");
             event.setCancelled(true);
             return;

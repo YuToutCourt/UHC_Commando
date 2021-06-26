@@ -32,8 +32,6 @@ public class StartCommand implements CommandExecutor {
     }
 
     public boolean start(CommandSender sender) {
-        Bukkit.broadcastMessage("§l> [SERVER] §cSetting up the game start... ");
-
         if(Bukkit.getOnlinePlayers().size() > Team.teams.size()) {
             sender.sendMessage("There is more players than teams available, the game can't start!");
             return false;
@@ -86,6 +84,10 @@ public class StartCommand implements CommandExecutor {
             this.main.playersInTheParty.add(player.getUniqueId());
             indexOfTeam++;
         }
+        
+        for(int i=0;i<30;i++){
+            Bukkit.broadcastMessage(" ");
+        }Bukkit.broadcastMessage("§l> [SERVER] §cSetting up the game start... ");
 
         this.main.WORLD.setDifficulty(Difficulty.HARD);
 

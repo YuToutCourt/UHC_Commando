@@ -104,6 +104,9 @@ public class Team {
         return this.owner;
     }
 
+    /**
+     * @return a Set of team that you controle
+     */
     public Set<Team> getOwnTeams() {
         return this.ownedTeams;
     }

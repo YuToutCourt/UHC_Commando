@@ -1,11 +1,10 @@
 To fix :
     - On the command /inv don't see armor
-    - If a player die and the killer dies in the followed 30 seconds this is a problème
-    - Soon we will find so random and stupid bugs
+    - If a player die and the killer dies in the followed 30 seconds this is a problem
+    - A kill B ; B kill C ; C have the color of B but is in the team of A
 
 Todo :
-    - Team message chat
-    - Detect if a player is in the same team of a player (A note : Personne est dans la même team mais un team est avec une autre)
+    - return void();
 
 ------------------------------
 

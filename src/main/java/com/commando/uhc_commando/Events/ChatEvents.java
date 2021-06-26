@@ -12,24 +12,22 @@ public class ChatEvents implements Listener {
 
     @EventHandler
     public void onMessage(AsyncPlayerChatEvent event){
-        Player player = event.getPlayer();
+        Player playerSender = event.getPlayer();
         String message = event.getMessage();
         if(Team.chatEnable && message.charAt(0) == '!') { // team message
             event.setCancelled(true);
-            // TODO team chat message
-            // Un enfer cette chose aled
-            Team teamOfTheSender = Team.getTeamOf(player);
+            String newMessage  ="";
+            String[] toLoop = message.split("");
+            for(int i=1;i<toLoop.length;i++){
+                newMessage += toLoop[i];
+            }
             for(Player p : Bukkit.getOnlinePlayers()){
-                System.out.println("Nom Team = :"+teamOfTheSender.getName()+","+teamOfTheSender+" | "+Team.getTeamOf(p).getName()+","+Team.getTeamOf(p));
-                System.out.println("Team Leader = "+ teamOfTheSender.getLeader()+" "+Team.getTeamOf(p).getLeader());
-                System.out.println("GetOwner = "+teamOfTheSender.getOwner()+" "+Team.getTeamOf(p).getOwner());
-                System.out.println("GetOwnTeam = "+teamOfTheSender.getOwnTeams()+" "+Team.getTeamOf(p).getOwnTeams());
-                if(teamOfTheSender.getOwner().equals(Team.getTeamOf(player).getOwner())){
-                    p.sendMessage(teamOfTheSender.getColor()+ "["+teamOfTheSender.getName()+"] " + player.getName() +" >§r "+ message);
+                if(Team.getLeadingTeamOf(playerSender).equals(Team.getLeadingTeamOf(p))){
+                    p.sendMessage(Team.getLeadingTeamOf(playerSender).getColor()+ "["+Team.getLeadingTeamOf(playerSender).getName()+"] " + playerSender.getName() +" >§r "+ newMessage);
                 }
             }
         } else { // general message
-            event.setFormat(player.getDisplayName() + "§r§7" + " > §r" + message);
+            event.setFormat(playerSender.getDisplayName() + "§r§7" + " > §r" + message);
         }
     }
 
