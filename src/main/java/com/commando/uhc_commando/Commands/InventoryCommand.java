@@ -9,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 public class InventoryCommand implements CommandExecutor {
 
@@ -40,6 +41,9 @@ public class InventoryCommand implements CommandExecutor {
             playerSender.sendMessage("§cYou don't lead this player");
             return true;
         }
+        ItemStack[] test = target.getEquipment().getArmorContents();
+        for(ItemStack item : test)
+            System.out.println(item);
         playerSender.openInventory(target.getInventory());
         return true;
     }
