@@ -61,13 +61,13 @@ public class PlayerEvents implements Listener {
     @EventHandler
     public void onArrow(EntityDamageByEntityEvent event) {
         if((event.getEntity() instanceof Player) && (event.getDamager() instanceof Projectile) && (((Projectile) event.getDamager()).getShooter() instanceof Player)) {
-        Player victim = (Player) event.getEntity();
-        Player attacker = ((Player) ((Projectile) event.getDamager()).getShooter());
-        if (Team.getLeadingTeamOf(victim).equals(Team.getLeadingTeamOf(attacker)) || victim.equals(attacker) && !Team.friendlyFire){
-            attacker.sendMessage("§cYou can't hit your teammate !");
-            event.setCancelled(true);
-            return;
-        }
+            Player victim = (Player) event.getEntity();
+            Player attacker = ((Player) ((Projectile) event.getDamager()).getShooter());
+            if (Team.getLeadingTeamOf(victim).equals(Team.getLeadingTeamOf(attacker)) || victim.equals(attacker) && !Team.friendlyFire){
+                attacker.sendMessage("§cYou can't hit your teammate !");
+                event.setCancelled(true);
+                return;
+            }
     }
 }
 
