@@ -85,7 +85,7 @@ public class StartCommand implements CommandExecutor {
             indexOfTeam++;
         }
         
-        for(int i=0;i<30;i++){
+        for(int i=0;i<100;i++){
             Bukkit.broadcastMessage(" ");
         }Bukkit.broadcastMessage("§l> [SERVER] §cSetting up the game start... ");
 
