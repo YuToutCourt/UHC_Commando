@@ -32,7 +32,7 @@ public class DeathEvents implements Listener {
         }
 
         if(this.main.CONFIG.getBoolean("Death.Lightning")){
-            this.main.WORLD.spawnEntity(deathLocation,EntityType.LIGHTNING);
+            this.main.WORLD.strikeLightningEffect(deathLocation);
         }
 
         

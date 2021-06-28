@@ -58,6 +58,7 @@ public class PlayerEvents implements Listener {
             return;
         }
     }
+    
     @EventHandler
     public void onArrow(EntityDamageByEntityEvent event) {
         if((event.getEntity() instanceof Player) && (event.getDamager() instanceof Projectile) && (((Projectile) event.getDamager()).getShooter() instanceof Player)) {
@@ -67,7 +68,7 @@ public class PlayerEvents implements Listener {
                 attacker.sendMessage("§cYou can't hit your teammate !");
                 event.setCancelled(true);
                 return;
-            }
+            }   
     }
 }
 
