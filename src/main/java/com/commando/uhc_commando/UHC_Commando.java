@@ -66,8 +66,8 @@ public final class UHC_Commando extends JavaPlugin {
         if(!CONFIG.getBoolean("World.BadWeather")){pm.registerEvents(new WeatherEvent(), this);}
         if(CONFIG.getBoolean("DisableAchivements")){pm.registerEvents(new AchivementEvent(), this);}
         if(!CONFIG.getBoolean("NotchApple")){pm.registerEvents(new AntiCraftEventNotch(), this);}
-        if(!CONFIG.getBoolean("NotchApple")){pm.registerEvents(new AntiCraftStrenghtPotionEvent(), this);}
-        if(!CONFIG.getBoolean("NotchApple")){pm.registerEvents(new AntiCraftPotLevel2(), this);}
+        if(!CONFIG.getBoolean("StrenghtPotions")){pm.registerEvents(new AntiCraftStrenghtPotionEvent(), this);}
+        if(!CONFIG.getBoolean("LevelTwoPotions")){pm.registerEvents(new AntiCraftPotLevel2(), this);}
         if(!CONFIG.getBoolean("ProjectilesKnockback")){pm.registerEvents(new ProjectifCancelEvent(), this);}
         if(!CONFIG.getBoolean("AllowHorse")){pm.registerEvents(new HorseCancelEvent(),this);}
         if(!CONFIG.getBoolean("AllowNether")){pm.registerEvents(new NetherCancelEvent(),this);}
