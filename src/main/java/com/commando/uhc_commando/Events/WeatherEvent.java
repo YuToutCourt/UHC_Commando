@@ -10,6 +10,10 @@ public class WeatherEvent implements Listener {
 
     private UHC_Commando main;
 
+    public WeatherEvent(UHC_Commando main) {
+        this.main = main;
+    }
+
     @EventHandler
     public void onWeather(WeatherChangeEvent event) {
         if(event.toWeatherState()) this.main.WORLD.setWeatherDuration(0);

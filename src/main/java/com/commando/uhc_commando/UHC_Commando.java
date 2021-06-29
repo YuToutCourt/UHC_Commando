@@ -56,6 +56,10 @@ public final class UHC_Commando extends JavaPlugin {
         pm.registerEvents(new DeathEvents(this), this);
         pm.registerEvents(new PlayerEvents(this), this);
         pm.registerEvents(new WinEvents(), this);
+        pm.registerEvents(new RulesEvents(), this);
+        if(CONFIG.getBoolean("CutClean")) pm.registerEvents(new CutCleanEvents(), this);
+        if(!CONFIG.getBoolean("World.BadWeather")) pm.registerEvents(new WeatherEvent(this), this);
+        if(CONFIG.getBoolean("DisableAchivements")) pm.registerEvents(new AchivementEvent(), this);
 
         this.resetGame();
     }
@@ -76,7 +80,6 @@ public final class UHC_Commando extends JavaPlugin {
 
         // Reset teams
         List<String> teams = CONFIG.getStringList("Teams.Teams");
-        Team.friendlyFire = CONFIG.getBoolean("Teams.FriendlyFire");
         Team.chatEnable = CONFIG.getBoolean("Teams.TeamChat");
         Team.teams.clear();
         Team.teamsColorCode.clear();
@@ -106,7 +109,14 @@ public final class UHC_Commando extends JavaPlugin {
         RulesEvents.NETHER = CONFIG.getBoolean("AllowNether");
         RulesEvents.FIRE_ENCHANTS = CONFIG.getBoolean("FireAndFlame");
 
-        // TODO Reset scoreboard
+        // Reset scoreboard
+        for(FastBoard board : this.boards) {
+            board.delete();
+        }
+        this.boards.clear();
+        for(Player p : Bukkit.getOnlinePlayers()) {
+            this.boards.add(this.createBoard(p));
+        }
     }
 
     public FastBoard createBoard(Player player) {

@@ -6,7 +6,6 @@ import com.commando.uhc_commando.Teams.Team;
 
 import org.bukkit.*;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -52,25 +51,10 @@ public class PlayerEvents implements Listener {
         if(!(event.getDamager() instanceof Player)) return;
         Player victim = (Player) event.getEntity();
         Player attacker = (Player) event.getDamager();
-        if(!Team.friendlyFire && Team.getLeadingTeamOf(victim).equals(Team.getLeadingTeamOf(attacker))){
+        if(Team.getLeadingTeamOf(victim).equals(Team.getLeadingTeamOf(attacker))){
             attacker.sendMessage("§cYou can't hit your teammate !");
             event.setCancelled(true);
             return;
         }
     }
-    
-    @EventHandler
-    public void onArrow(EntityDamageByEntityEvent event) {
-        if((event.getEntity() instanceof Player) && (event.getDamager() instanceof Projectile) && (((Projectile) event.getDamager()).getShooter() instanceof Player)) {
-            Player victim = (Player) event.getEntity();
-            Player attacker = ((Player) ((Projectile) event.getDamager()).getShooter());
-            if (Team.getLeadingTeamOf(victim).equals(Team.getLeadingTeamOf(attacker)) || victim.equals(attacker) && !Team.friendlyFire){
-                attacker.sendMessage("§cYou can't hit your teammate !");
-                event.setCancelled(true);
-                return;
-            }   
-    }
-}
-
-
 }

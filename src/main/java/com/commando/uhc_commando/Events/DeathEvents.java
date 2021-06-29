@@ -34,7 +34,6 @@ public class DeathEvents implements Listener {
             this.main.WORLD.strikeLightningEffect(deathLocation);
         }
 
-        
         victim.spigot().respawn();
         victim.setGameMode(GameMode.SPECTATOR);
         victim.teleport(deathLocation);

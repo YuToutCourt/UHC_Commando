@@ -15,7 +15,6 @@ public class Team {
     public static List<String> teamsName = new ArrayList<String>();
     public static List<String> teamsPrefix = new ArrayList<String>();
     public static List<String> teamsColorCode = new ArrayList<String>();
-    public static boolean friendlyFire;
     public static boolean chatEnable;
     public static List<Team> teams = new ArrayList<Team>();
 
