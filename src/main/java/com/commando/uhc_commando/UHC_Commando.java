@@ -10,18 +10,12 @@ import com.commando.uhc_commando.Commands.InventoryCommand;
 import com.commando.uhc_commando.Commands.RuleCommand;
 import com.commando.uhc_commando.Commands.StartCommand;
 import com.commando.uhc_commando.Events.AchivementEvent;
-import com.commando.uhc_commando.Events.AntiCraftEventNotch;
-import com.commando.uhc_commando.Events.AntiCraftPotLevel2;
-import com.commando.uhc_commando.Events.AntiCraftStrenghtPotionEvent;
+import com.commando.uhc_commando.Events.RulesEvents;
 import com.commando.uhc_commando.Events.ChatEvents;
 import com.commando.uhc_commando.Events.CutCleanEvents;
 import com.commando.uhc_commando.Events.DeathEvents;
-import com.commando.uhc_commando.Events.EnchantFireCancelEvent;
-import com.commando.uhc_commando.Events.HorseCancelEvent;
-import com.commando.uhc_commando.Events.NetherCancelEvent;
 import com.commando.uhc_commando.Events.WinEvents;
 import com.commando.uhc_commando.Events.PlayerEvents;
-import com.commando.uhc_commando.Events.ProjectifCancelEvent;
 import com.commando.uhc_commando.Events.WeatherEvent;
 import com.commando.uhc_commando.Tasks.TimerTask;
 import com.commando.uhc_commando.Teams.Team;
@@ -61,20 +55,18 @@ public final class UHC_Commando extends JavaPlugin {
         pm.registerEvents(new ChatEvents(), this);
         pm.registerEvents(new DeathEvents(this), this);
         pm.registerEvents(new PlayerEvents(this), this);
-        pm.registerEvents(new WinEvents(),this);
-        if(CONFIG.getBoolean("CutClean")){pm.registerEvents(new CutCleanEvents(), this);}
-        if(!CONFIG.getBoolean("World.BadWeather")){pm.registerEvents(new WeatherEvent(), this);}
-        if(CONFIG.getBoolean("DisableAchivements")){pm.registerEvents(new AchivementEvent(), this);}
-        if(!CONFIG.getBoolean("NotchApple")){pm.registerEvents(new AntiCraftEventNotch(), this);}
-        if(!CONFIG.getBoolean("StrenghtPotions")){pm.registerEvents(new AntiCraftStrenghtPotionEvent(), this);}
-        if(!CONFIG.getBoolean("LevelTwoPotions")){pm.registerEvents(new AntiCraftPotLevel2(), this);}
-        if(!CONFIG.getBoolean("ProjectilesKnockback")){pm.registerEvents(new ProjectifCancelEvent(), this);}
-        if(!CONFIG.getBoolean("AllowHorse")){pm.registerEvents(new HorseCancelEvent(),this);}
-        if(!CONFIG.getBoolean("AllowNether")){pm.registerEvents(new NetherCancelEvent(),this);}
-        if(!CONFIG.getBoolean("FireAndFlame")){pm.registerEvents(new EnchantFireCancelEvent(),this);}
+        pm.registerEvents(new WinEvents(), this);
+        if(CONFIG.getBoolean("CutClean")) pm.registerEvents(new CutCleanEvents(), this);
+        if(!CONFIG.getBoolean("World.BadWeather")) pm.registerEvents(new WeatherEvent(), this);
+        if(CONFIG.getBoolean("DisableAchivements")) pm.registerEvents(new AchivementEvent(), this);
+        if(!CONFIG.getBoolean("NotchApple")) pm.registerEvents(new RulesEvents(), this);
+        if(!CONFIG.getBoolean("StrenghtPotions")) pm.registerEvents(new AntiCraftStrenghtPotionEvent(), this);
+        if(!CONFIG.getBoolean("LevelTwoPotions")) pm.registerEvents(new AntiCraftPotLevel2(), this);
+        if(!CONFIG.getBoolean("ProjectilesKnockback")) pm.registerEvents(new ProjectifCancelEvent(), this);
+        if(!CONFIG.getBoolean("AllowHorse")) pm.registerEvents(new HorseCancelEvent(),this);
+        if(!CONFIG.getBoolean("AllowNether")) pm.registerEvents(new NetherCancelEvent(),this);
+        if(!CONFIG.getBoolean("FireAndFlame")) pm.registerEvents(new EnchantFireCancelEvent(),this);
 
-        WORLD = Bukkit.getWorld(CONFIG.getString("World.WorldName"));
-        WORLD.setPVP(false);
         this.resetGame();
     }
 
@@ -84,6 +76,9 @@ public final class UHC_Commando extends JavaPlugin {
     }
 
     public void resetGame() {
+        WORLD = Bukkit.getWorld(CONFIG.getString("World.WorldName"));
+        WORLD.setPVP(false);
+
         // Reset worldborder
         WORLD.setSpawnLocation(CONFIG.getInt("Spawn.x"), CONFIG.getInt("Spawn.y"), CONFIG.getInt("Spawn.z"));
         WORLD.getWorldBorder().setCenter(WORLD.getSpawnLocation());
@@ -106,9 +101,22 @@ public final class UHC_Commando extends JavaPlugin {
             Team.teams.add(new Team(splitTeam[2], splitTeam[1], splitTeam[0]));
         }
 
+        // Reset timers
         TimerTask.setRunning(false);
         TimerTask.setPVPtimer(CONFIG.getInt("TimeBeforePvp"));
         TimerTask.setWordborderTimer(CONFIG.getInt("Border.TimeBeforeMoving"));
+
+        // Reset objectives & gamerules
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"scoreboard objectives remove vie");
+        RulesEvents.NOTCH_APPLE = CONFIG.getBoolean("NotchApple");
+        RulesEvents.STRENGHT_POTIONS = CONFIG.getBoolean("StrenghtPotions");
+        RulesEvents.LEVEL_TWO_POTION = CONFIG.getBoolean("LevelTwoPotions");
+        RulesEvents.PROJECTILES = CONFIG.getBoolean("ProjectilesKnockback");
+        RulesEvents.HORSE = CONFIG.getBoolean("AllowHorse");
+        RulesEvents.NETHER = CONFIG.getBoolean("AllowNether");
+        RulesEvents.FIRE_ENCHANTS = CONFIG.getBoolean("FireAndFlame");
+
+        // TODO Reset scoreboard
     }
 
     public FastBoard createBoard(Player player) {

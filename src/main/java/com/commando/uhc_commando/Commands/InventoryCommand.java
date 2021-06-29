@@ -41,6 +41,7 @@ public class InventoryCommand implements CommandExecutor {
             playerSender.sendMessage("§cYou don't lead this player");
             return true;
         }
+        // TODO Armor in Inventory
         ItemStack[] test = target.getEquipment().getArmorContents();
         for(ItemStack item : test)
             System.out.println(item);

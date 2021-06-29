@@ -8,7 +8,7 @@ import org.bukkit.event.player.PlayerAchievementAwardedEvent;
 public class AchivementEvent implements Listener {
 
     @EventHandler
-    public void onAchivement(PlayerAchievementAwardedEvent event){
+    public void onAchievement(PlayerAchievementAwardedEvent event){
         event.setCancelled(true);
     }
     

@@ -36,7 +36,6 @@ public class StartCommand implements CommandExecutor {
             sender.sendMessage("There is more players than teams available, the game can't start!");
             return false;
         }
-        int durationEffect = this.main.CONFIG.getInt("Invicibility");
 
         this.main.WORLD.setDifficulty(Difficulty.PEACEFUL);
         this.main.WORLD.setTime(0);
@@ -44,21 +43,20 @@ public class StartCommand implements CommandExecutor {
 
         // TODO alternative ?
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spreadplayers 0 0 " + borderSize / 10 + " "+ (borderSize - 10) +" false @a"); //x z DistanceEntreChaquePlayer MaxRangeSurLaTp team?
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"scoreboard objectives remove vie");
+        
         if(this.main.CONFIG.getBoolean("TabHealth")){
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"scoreboard objectives add vie health");
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"scoreboard objectives setdisplay list vie");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "scoreboard objectives add life health");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "scoreboard objectives setdisplay list life");
         }
 
-
+        // Gamerules
         this.main.WORLD.setGameRuleValue("naturalRegeneration", "false");
         this.main.WORLD.setGameRuleValue("doFireTick", this.main.CONFIG.getString("World.EnableFireSpreading"));
-        if(!main.CONFIG.getBoolean("World.EnableDayNightCycle")){
-            this.main.WORLD.setGameRuleValue("doDaylightCycle", "false");
-            this.main.WORLD.setTime(this.main.CONFIG.getInt("World.HourOfDay"));
-        }
+        boolean dayCycle = main.CONFIG.getBoolean("World.EnableDayNightCycle");
+        this.main.WORLD.setGameRuleValue("doDaylightCycle", ""+dayCycle);
+        if(!dayCycle) this.main.WORLD.setTime(this.main.CONFIG.getInt("World.HourOfDay"));
 
-
+        int invicibilityDuration = this.main.CONFIG.getInt("Invicibility");
         int indexOfTeam = 0;
         for(Player player : Bukkit.getOnlinePlayers()) {
             // reset potion effects
@@ -71,7 +69,7 @@ public class StartCommand implements CommandExecutor {
                 if(player.hasAchievement(a)) player.removeAchievement(a);
             }
 
-            player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20*durationEffect, 255));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20*invicibilityDuration, 255));
             player.setGameMode(GameMode.SURVIVAL);
             player.setHealth(20);
             player.setFoodLevel(20);
@@ -85,9 +83,8 @@ public class StartCommand implements CommandExecutor {
             indexOfTeam++;
         }
         
-        for(int i=0;i<100;i++){
-            Bukkit.broadcastMessage(" ");
-        }Bukkit.broadcastMessage("§l> [SERVER] §cSetting up the game start... ");
+        for(int i = 0; i < 100; i++) Bukkit.broadcastMessage(" ");
+        Bukkit.broadcastMessage("§l> [SERVER] §cSetting up the game start... ");
 
         this.main.WORLD.setDifficulty(Difficulty.HARD);
 
