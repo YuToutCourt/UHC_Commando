@@ -56,16 +56,6 @@ public final class UHC_Commando extends JavaPlugin {
         pm.registerEvents(new DeathEvents(this), this);
         pm.registerEvents(new PlayerEvents(this), this);
         pm.registerEvents(new WinEvents(), this);
-        if(CONFIG.getBoolean("CutClean")) pm.registerEvents(new CutCleanEvents(), this);
-        if(!CONFIG.getBoolean("World.BadWeather")) pm.registerEvents(new WeatherEvent(), this);
-        if(CONFIG.getBoolean("DisableAchivements")) pm.registerEvents(new AchivementEvent(), this);
-        if(!CONFIG.getBoolean("NotchApple")) pm.registerEvents(new RulesEvents(), this);
-        if(!CONFIG.getBoolean("StrenghtPotions")) pm.registerEvents(new AntiCraftStrenghtPotionEvent(), this);
-        if(!CONFIG.getBoolean("LevelTwoPotions")) pm.registerEvents(new AntiCraftPotLevel2(), this);
-        if(!CONFIG.getBoolean("ProjectilesKnockback")) pm.registerEvents(new ProjectifCancelEvent(), this);
-        if(!CONFIG.getBoolean("AllowHorse")) pm.registerEvents(new HorseCancelEvent(),this);
-        if(!CONFIG.getBoolean("AllowNether")) pm.registerEvents(new NetherCancelEvent(),this);
-        if(!CONFIG.getBoolean("FireAndFlame")) pm.registerEvents(new EnchantFireCancelEvent(),this);
 
         this.resetGame();
     }
