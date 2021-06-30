@@ -1,7 +1,7 @@
 package com.commando.uhc_commando.Events;
 
 import com.commando.uhc_commando.UHC_Commando;
-import com.commando.uhc_commando.Tasks.TimerTask;
+import com.commando.uhc_commando.Tasks.TimerTasks;
 import com.commando.uhc_commando.Teams.Team;
 
 import org.bukkit.*;
@@ -31,7 +31,7 @@ public class PlayerEvents implements Listener {
         event.setJoinMessage("§7[§3+§7] " + player.getDisplayName());
         this.main.boards.add(this.main.createBoard(player));
 
-        if(!TimerTask.RUN) {
+        if(!TimerTasks.RUN) {
             player.teleport(this.main.WORLD.getSpawnLocation());
         } else {
             if(!this.main.playersInTheParty.contains(player.getUniqueId()))

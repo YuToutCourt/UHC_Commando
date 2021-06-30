@@ -10,7 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.mrmicky.fastboard.FastBoard;
 
-public class TimerTask extends BukkitRunnable {
+public class TimerTasks extends BukkitRunnable {
 
 	public static boolean RUN = false;
 	private static int time = 0;
@@ -22,7 +22,7 @@ public class TimerTask extends BukkitRunnable {
 
 	private UHC_Commando main;
 	
-	public TimerTask(UHC_Commando uhc) {
+	public TimerTasks(UHC_Commando uhc) {
 		this.main = uhc;
 		time = 0;
 	}

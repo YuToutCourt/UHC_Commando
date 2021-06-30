@@ -1,6 +1,6 @@
 package com.commando.uhc_commando.Events;
 
-import com.commando.uhc_commando.Tasks.TimerTask;
+import com.commando.uhc_commando.Tasks.TimerTasks;
 import com.commando.uhc_commando.Teams.Team;
 
 import org.bukkit.Bukkit;
@@ -14,7 +14,7 @@ public class WinEvents implements Listener {
     public void onDeath(PlayerDeathEvent event){
         if (Team.getLeadingTeamsAmount() == 1){
             Bukkit.broadcastMessage("§aEnd of the game! The "+ Team.getWinner().getColor() + Team.getWinner().getName() +" §ateam won!");
-            TimerTask.setRunning(false);
+            TimerTasks.setRunning(false);
         }
     }
 }

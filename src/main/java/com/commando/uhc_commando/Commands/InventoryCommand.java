@@ -1,6 +1,6 @@
 package com.commando.uhc_commando.Commands;
 
-import com.commando.uhc_commando.Tasks.TimerTask;
+import com.commando.uhc_commando.Tasks.TimerTasks;
 import com.commando.uhc_commando.Teams.Team;
 
 import org.bukkit.Bukkit;
@@ -25,7 +25,7 @@ public class InventoryCommand implements CommandExecutor {
         if (args.length != 1) return false;
         Player playerSender = (Player) sender;
         Player target = Bukkit.getServer().getPlayer(args[0]);
-        if(!TimerTask.RUN) {
+        if(!TimerTasks.RUN) {
             playerSender.sendMessage("§cThe game has not started yet");
             return true;
         }

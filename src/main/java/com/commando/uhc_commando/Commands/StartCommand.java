@@ -1,7 +1,7 @@
 package com.commando.uhc_commando.Commands;
 
 import com.commando.uhc_commando.UHC_Commando;
-import com.commando.uhc_commando.Tasks.TimerTask;
+import com.commando.uhc_commando.Tasks.TimerTasks;
 import com.commando.uhc_commando.Teams.Team;
 
 import org.bukkit.*;
@@ -88,9 +88,9 @@ public class StartCommand implements CommandExecutor {
 
         this.main.WORLD.setDifficulty(Difficulty.HARD);
 
-        TimerTask timer = new TimerTask(this.main);
+        TimerTasks timer = new TimerTasks(this.main);
         timer.runTaskTimer(this.main, 0, 20);
-        TimerTask.setRunning(true);
+        TimerTasks.setRunning(true);
         timer.run();
 
         return true;

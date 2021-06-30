@@ -17,7 +17,7 @@ import com.commando.uhc_commando.Events.DeathEvents;
 import com.commando.uhc_commando.Events.WinEvents;
 import com.commando.uhc_commando.Events.PlayerEvents;
 import com.commando.uhc_commando.Events.WeatherEvent;
-import com.commando.uhc_commando.Tasks.TimerTask;
+import com.commando.uhc_commando.Tasks.TimerTasks;
 import com.commando.uhc_commando.Teams.Team;
 
 import org.bukkit.Bukkit;
@@ -95,9 +95,9 @@ public final class UHC_Commando extends JavaPlugin {
         }
 
         // Reset timers
-        TimerTask.setRunning(false);
-        TimerTask.setPVPtimer(CONFIG.getInt("TimeBeforePvp"));
-        TimerTask.setWordborderTimer(CONFIG.getInt("Border.TimeBeforeMoving"));
+        TimerTasks.setRunning(false);
+        TimerTasks.setPVPtimer(CONFIG.getInt("TimeBeforePvp"));
+        TimerTasks.setWordborderTimer(CONFIG.getInt("Border.TimeBeforeMoving"));
 
         // Reset objectives & gamerules
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"scoreboard objectives remove vie");
@@ -146,14 +146,14 @@ public final class UHC_Commando extends JavaPlugin {
 
 		List<String> lines = new ArrayList<String>();
 		lines.add(SEPARATOR);
-		lines.add(TimerTask.formatTime(0, true));
+		lines.add(TimerTasks.formatTime(0, true));
 		lines.add(SEPARATOR);
-		lines.add(TimerTask.formatLine("Teams", 0));
-		lines.add(TimerTask.formatLine("Your team", 0));
+		lines.add(TimerTasks.formatLine("Teams", 0));
+		lines.add(TimerTasks.formatLine("Your team", 0));
 		lines.add(SEPARATOR);
-		lines.add(TimerTask.formatLine("PvP", TimerTask.formatTime(0, false)));
-		lines.add(TimerTask.formatLine("Border", TimerTask.formatTime(0, false)));
-		lines.add(TimerTask.formatLine("Size", 0));
+		lines.add(TimerTasks.formatLine("PvP", TimerTasks.formatTime(0, false)));
+		lines.add(TimerTasks.formatLine("Border", TimerTasks.formatTime(0, false)));
+		lines.add(TimerTasks.formatLine("Size", 0));
 		lines.add(SEPARATOR);
 		board.updateLines(lines);
 
