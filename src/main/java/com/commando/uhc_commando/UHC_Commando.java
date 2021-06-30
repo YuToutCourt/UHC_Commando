@@ -109,6 +109,26 @@ public final class UHC_Commando extends JavaPlugin {
         RulesEvents.NETHER = CONFIG.getBoolean("AllowNether");
         RulesEvents.FIRE_ENCHANTS = CONFIG.getBoolean("FireAndFlame");
 
+        RuleCommand.DAY_NIGHT_CYCLE = CONFIG.getBoolean("World.EnableDayNightCycle") ? "§aOn" : "§cOff";
+        RuleCommand.FIRE_SPREADING = CONFIG.getBoolean("World.EnableFireSpreading") ? "§aOn" : "§cOff";
+        RuleCommand.ACHIVEMENTS = CONFIG.getBoolean("DisableAchivements") ? "§cOff" : "§aOff";
+        RuleCommand.TEAM_CHAT = CONFIG.getBoolean("Teams.TeamChat") ? "§aOn" : "§cOff";
+        RuleCommand.INVICIBILITY = CONFIG.getString("Invicibility");
+        RuleCommand.TIME_BEFORE_PVP = CONFIG.getString("TimeBeforePvp"); 
+        RuleCommand.BORDER_START_SIZE = CONFIG.getString("Border.StartSize");
+        RuleCommand.TIME_BEFORE_BORDER_MOVE = CONFIG.getString("Border.TimeBeforeMoving");
+        RuleCommand.BORDER_END_SIZE = CONFIG.getString("Border.EndSize");
+        RuleCommand.BORDER_MOVE_DURATION = CONFIG.getString("Border.MovingDuration");
+
+        RuleCommand.NOTCH_APPLE = CONFIG.getBoolean("NotchApple") ? "§aOn" : "§cOff";
+        RuleCommand.STRENGHT_POTIONS = CONFIG.getBoolean("StrenghtPotions") ? "§aOn" : "§cOff";
+        RuleCommand.LEVEL_TWO_POTION = CONFIG.getBoolean("LevelTwoPotions") ? "§aOn" : "§cOff";
+        RuleCommand.PROJECTILES = CONFIG.getBoolean("ProjectilesKnockback") ? "§aOn" : "§cOff";
+        RuleCommand.HORSE = CONFIG.getBoolean("AllowHorse") ? "§aOn" : "§cOff";
+        RuleCommand.NETHER = CONFIG.getBoolean("AllowNether") ? "§aOn" : "§cOff";
+        RuleCommand.FIRE_ENCHANTS = RulesEvents.FIRE_ENCHANTS ? "§aOn" : "§cOff";
+        RuleCommand.CUT_CLEAN = CONFIG.getBoolean("CutClean") ? "§aOn" : "§cOff";
+
         // Reset scoreboard
         for(FastBoard board : this.boards) {
             board.delete();
