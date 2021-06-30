@@ -29,7 +29,7 @@ public class RulesEvents implements Listener {
 
     @EventHandler
     public void onCraftNotchApple(CraftItemEvent event) {
-        if(!NOTCH_APPLE) return;
+        if(NOTCH_APPLE) return;
 
         Player player = (Player) event.getWhoClicked();
         ItemStack itemCrafted = event.getRecipe().getResult();
@@ -46,20 +46,20 @@ public class RulesEvents implements Listener {
         Material item = event.getContents().getIngredient().getType();
         // Level 2 potion
         if(item.equals(Material.GLOWSTONE_DUST)){
-            if(!LEVEL_TWO_POTION) return;
+            if(LEVEL_TWO_POTION) return;
             event.setCancelled(true);
         }
 
         // Strenght potion
         if(item.equals(Material.BLAZE_POWDER)){
-            if(!STRENGHT_POTIONS) return;
+            if(STRENGHT_POTIONS) return;
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onProjectilLaunch(ProjectileLaunchEvent event){
-        if(!PROJECTILES) return;
+        if(PROJECTILES) return;
         
         EntityType projectile = event.getEntity().getType();
         if(!(projectile.equals(EntityType.EGG) || 
@@ -71,7 +71,7 @@ public class RulesEvents implements Listener {
 
     @EventHandler
     public void onProjectileHit(EntityDamageByEntityEvent event) {
-        if(!PROJECTILES) return;
+        if(PROJECTILES) return;
 
         if(!(event.getDamager() instanceof Projectile)) return; // only Projectiles
         Projectile projectile = (Projectile) event.getDamager();
@@ -87,7 +87,7 @@ public class RulesEvents implements Listener {
 
     @EventHandler
     public void onNetherPortal(PlayerPortalEvent event){
-        if(!NETHER) return;
+        if(NETHER) return;
 
         Player player = event.getPlayer();
         if(event.getCause() != PlayerPortalEvent.TeleportCause.NETHER_PORTAL) return;
@@ -98,7 +98,7 @@ public class RulesEvents implements Listener {
     
     @EventHandler
     public void onClickHorse(PlayerInteractEntityEvent event) {
-        if(!HORSE) return;
+        if(HORSE) return;
 
         Player player = event.getPlayer();
         if(!(event.getRightClicked() instanceof Horse)) return;
@@ -109,7 +109,7 @@ public class RulesEvents implements Listener {
 
     @EventHandler
     public void onEnchant(EnchantItemEvent event){
-        if(!FIRE_ENCHANTS) return;
+        if(FIRE_ENCHANTS) return;
 
         event.getEnchantsToAdd().remove(Enchantment.FIRE_ASPECT);
         event.getEnchantsToAdd().remove(Enchantment.ARROW_FIRE);
