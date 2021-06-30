@@ -60,7 +60,6 @@ public class Team {
         Player player = this.getLeader();
         player.setDisplayName(prefix + " " + player.getName());
         player.setPlayerListName(prefix + " " + player.getName());
-        player.setCustomName(prefix + " " + player.getName()); // Je voulais mettre le pseudo au dessus de la tête en couleur mais ça marche pas :/
     }
 
     private void setTeamMembersName(String prefix) {
