@@ -58,7 +58,7 @@ public final class UHC_Commando extends JavaPlugin {
         pm.registerEvents(new WinEvents(), this);
         pm.registerEvents(new RulesEvents(), this);
         if(CONFIG.getBoolean("CutClean")) pm.registerEvents(new CutCleanEvents(), this);
-        if(!CONFIG.getBoolean("World.BadWeather")) pm.registerEvents(new WeatherEvent(this), this);
+        if(!CONFIG.getBoolean("World.BadWeather")) pm.registerEvents(new WeatherEvent(), this);
         if(CONFIG.getBoolean("DisableAchivements")) pm.registerEvents(new AchivementEvent(), this);
 
         this.resetGame();

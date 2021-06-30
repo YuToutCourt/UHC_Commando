@@ -6,6 +6,7 @@ import com.commando.uhc_commando.Teams.Team;
 
 import org.bukkit.*;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -44,14 +45,17 @@ public class PlayerEvents implements Listener {
         event.setQuitMessage("§7[§4-§7] " + player.getDisplayName());
         this.main.removeBoardOf(player);
     }
-
+    
     @EventHandler
     public void damageEvent(EntityDamageByEntityEvent event) {
         if(!(event.getEntity() instanceof Player))  return;
-        if(!(event.getDamager() instanceof Player)) return;
         Player victim = (Player) event.getEntity();
-        Player attacker = (Player) event.getDamager();
-        if(Team.getLeadingTeamOf(victim).equals(Team.getLeadingTeamOf(attacker))){
+        Player attacker = null;
+        if(event.getDamager() instanceof Player) attacker = (Player) event.getDamager();
+        else if(event.getDamager() instanceof Projectile) attacker = (Player) ((Projectile) event.getDamager()).getShooter();
+        if(attacker == null) return;
+
+        if(Team.getLeadingTeamOf(victim).equals(Team.getLeadingTeamOf(attacker)) || victim.equals(attacker)){
             attacker.sendMessage("§cYou can't hit your teammate !");
             event.setCancelled(true);
             return;

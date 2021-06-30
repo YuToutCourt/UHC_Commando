@@ -1,7 +1,7 @@
 To fix :
     - On the command /inv don't see armor
     - A kill B ; B kill C ; C have the color of B but is in the team of A
-    - auto clear weather not working
+    - Projectile don't work for the frendlyFire
     
 Todo :
     - return void();
