@@ -8,7 +8,7 @@ commands:
     permission: perm.use
   rule:
     description: Rules of the UHC
-    usage: /rule <1>... <?>
+    usage: /rule <1 -> 5>
   start:
     description: Start the game
     usage: /start
@@ -18,5 +18,5 @@ commands:
     usage: /createSpawn
     permission: perm.use
   inv:
-    description: See the inv of a player (You are able to take the item)
+    description: See the inventory of a player (You can interact with it)
     usage: /inv <Pseudo>

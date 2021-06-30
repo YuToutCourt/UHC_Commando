@@ -120,12 +120,12 @@ public final class UHC_Commando extends JavaPlugin {
         RuleCommand.BORDER_END_SIZE = CONFIG.getString("Border.EndSize");
         RuleCommand.BORDER_MOVE_DURATION = CONFIG.getString("Border.MovingDuration");
 
-        RuleCommand.NOTCH_APPLE = CONFIG.getBoolean("NotchApple") ? "§aOn" : "§cOff";
-        RuleCommand.STRENGHT_POTIONS = CONFIG.getBoolean("StrenghtPotions") ? "§aOn" : "§cOff";
-        RuleCommand.LEVEL_TWO_POTION = CONFIG.getBoolean("LevelTwoPotions") ? "§aOn" : "§cOff";
-        RuleCommand.PROJECTILES = CONFIG.getBoolean("ProjectilesKnockback") ? "§aOn" : "§cOff";
-        RuleCommand.HORSE = CONFIG.getBoolean("AllowHorse") ? "§aOn" : "§cOff";
-        RuleCommand.NETHER = CONFIG.getBoolean("AllowNether") ? "§aOn" : "§cOff";
+        RuleCommand.NOTCH_APPLE = RulesEvents.NOTCH_APPLE ? "§aOn" : "§cOff";
+        RuleCommand.STRENGHT_POTIONS = RulesEvents.STRENGHT_POTIONS ? "§aOn" : "§cOff";
+        RuleCommand.LEVEL_TWO_POTION = RulesEvents.LEVEL_TWO_POTION ? "§aOn" : "§cOff";
+        RuleCommand.PROJECTILES = RulesEvents.PROJECTILES ? "§aOn" : "§cOff";
+        RuleCommand.HORSE = RulesEvents.HORSE ? "§aOn" : "§cOff";
+        RuleCommand.NETHER = RulesEvents.NETHER ? "§aOn" : "§cOff";
         RuleCommand.FIRE_ENCHANTS = RulesEvents.FIRE_ENCHANTS ? "§aOn" : "§cOff";
         RuleCommand.CUT_CLEAN = CONFIG.getBoolean("CutClean") ? "§aOn" : "§cOff";
 
