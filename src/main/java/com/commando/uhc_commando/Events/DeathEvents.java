@@ -47,15 +47,12 @@ public class DeathEvents implements Listener {
             BukkitRunnable task = new BukkitRunnable() {
                 @Override
                 public void run() {
-                    victim.teleport(attacker.getLocation());
-                    victim.setGameMode(GameMode.SURVIVAL);
-                    /*
                     if(attacker.getGameMode().equals(GameMode.SURVIVAL)){
                         victim.teleport(attacker.getLocation());
-                        victim.setGameMode(GameMode.SURVIVAL);
-                    }else {
-                        //run();
-                    */
+                    } else {
+                        victim.teleport(deathLocation);
+                    }
+                    victim.setGameMode(GameMode.SURVIVAL);
                 }
             };
             task.runTaskLater(this.main, 20 * 30);

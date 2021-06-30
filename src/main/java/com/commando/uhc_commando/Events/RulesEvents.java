@@ -10,7 +10,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.inventory.BrewEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -37,7 +36,7 @@ public class RulesEvents implements Listener {
         if(!itemCrafted.getType().equals(Material.GOLDEN_APPLE)) return;
         if(itemCrafted.getAmount() != 1) return; // 0 = golden apple, 1 = notch apple
 
-        player.sendMessage("§4§l[SERVER] > Notch apples have been disabled");
+        player.sendMessage("§cNotch apples have been disabled");
         event.setCancelled(true);
     }
 
@@ -58,23 +57,13 @@ public class RulesEvents implements Listener {
     }
 
     @EventHandler
-    public void onProjectilLaunch(ProjectileLaunchEvent event){
-        if(PROJECTILES) return;
-        
-        EntityType projectile = event.getEntity().getType();
-        if(!(projectile.equals(EntityType.EGG) || 
-             projectile.equals(EntityType.SNOWBALL) || 
-             projectile.equals(EntityType.FISHING_HOOK))) return;
-
-        event.setCancelled(true);
-    }
-
-    @EventHandler
     public void onProjectileHit(EntityDamageByEntityEvent event) {
         if(PROJECTILES) return;
 
         if(!(event.getDamager() instanceof Projectile)) return; // only Projectiles
         Projectile projectile = (Projectile) event.getDamager();
+        if(projectile.getType().equals(EntityType.ARROW)) return;
+        if(projectile.getType().equals(EntityType.ENDER_PEARL)) return;
 
         if(!(projectile.getShooter() instanceof Player)) return; // only Player attackers
         Player attacker = (Player) projectile.getShooter();
@@ -82,7 +71,7 @@ public class RulesEvents implements Listener {
         if(!(event.getEntity() instanceof Player)) return; // only Player victims
         
         event.setCancelled(true);
-        attacker.sendMessage("§4§l[SERVER] > Projectiles damages have been disabled");
+        attacker.sendMessage("§cProjectiles damages have been disabled");
     }
 
     @EventHandler
@@ -93,7 +82,7 @@ public class RulesEvents implements Listener {
         if(event.getCause() != PlayerPortalEvent.TeleportCause.NETHER_PORTAL) return;
 
         event.setCancelled(true);
-        player.sendMessage("§4§l[SERVER] > Nether have been disabled");
+        player.sendMessage("§cNether have been disabled");
     }
     
     @EventHandler
@@ -103,7 +92,7 @@ public class RulesEvents implements Listener {
         Player player = event.getPlayer();
         if(!(event.getRightClicked() instanceof Horse)) return;
 
-        player.sendMessage("§4§l[SERVER] > Horse have been disabled");
+        player.sendMessage("§cHorse have been disabled");
         event.setCancelled(true);
     }
 
