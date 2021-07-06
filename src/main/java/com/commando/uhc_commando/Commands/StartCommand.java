@@ -43,11 +43,14 @@ public class StartCommand implements CommandExecutor {
 
         // TODO alternative ?
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spreadplayers 0 0 " + borderSize / 10 + " "+ (borderSize - 10) +" false @a"); //x z DistanceEntreChaquePlayer MaxRangeSurLaTp team?
-        
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "effect @a minecraft:instant_damage");
+
         if(this.main.CONFIG.getBoolean("TabHealth")){
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "scoreboard objectives add life health");
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "scoreboard objectives setdisplay list life");
         }
+
+        
 
         // Gamerules
         this.main.WORLD.setGameRuleValue("naturalRegeneration", "false");
@@ -55,6 +58,7 @@ public class StartCommand implements CommandExecutor {
         boolean dayCycle = main.CONFIG.getBoolean("World.EnableDayNightCycle");
         this.main.WORLD.setGameRuleValue("doDaylightCycle", ""+dayCycle);
         if(!dayCycle) this.main.WORLD.setTime(this.main.CONFIG.getInt("World.HourOfDay"));
+        
 
         int invicibilityDuration = this.main.CONFIG.getInt("Invicibility");
         int indexOfTeam = 0;

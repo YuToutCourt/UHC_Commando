@@ -1,5 +1,5 @@
 To fix :
-    - A kill B ; B kill C ; C have the color of B but is in the team of A
+    + A kill B ; B kill C ; C have the color of B but is in the team of A
     
 Todo :
     - return void();
