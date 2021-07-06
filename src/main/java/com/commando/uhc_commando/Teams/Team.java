@@ -34,9 +34,9 @@ public class Team {
         this.leader = null;
     }
 
-    public boolean join(Team teamToJoin) {
+    public boolean join(Team teamToJoin,ChatColor teamColor) {
         this.leaveAll();
-        this.setTeamMembersName(teamToJoin.color + "[" + teamToJoin.symbol +"]");
+        this.setTeamMembersName(teamColor + "[" + teamToJoin.symbol +"]");
         this.owner = teamToJoin;
         return teamToJoin.ownedTeams.add(this);
     }
@@ -107,6 +107,14 @@ public class Team {
      */
     public Set<Team> getOwnTeams() {
         return this.ownedTeams;
+    }
+
+    public static int getPlayerAmountInTeam(Team teams){
+        int size = 1;
+        for(Team team : teams.ownedTeams) {
+            size += team.getPlayerAmount();
+        }
+        return size;
     }
 
     public static Team getTeamOf(Player player) {

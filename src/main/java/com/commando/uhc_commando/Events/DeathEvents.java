@@ -3,7 +3,6 @@ package com.commando.uhc_commando.Events;
 import com.commando.uhc_commando.UHC_Commando;
 import com.commando.uhc_commando.Teams.Team;
 
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -42,9 +41,13 @@ public class DeathEvents implements Listener {
 
         if (!(attacker instanceof Player)) {
             event.setDeathMessage("§c§l† §r" + victim.getDisplayName() + " §c§ldied from PVE §c§l†");
+            System.out.println("Dans la team du mec il y : " + Team.getPlayerAmountInTeam(Team.getTeamOf(victim))+ " player");
+            if(Team.getPlayerAmountInTeam(Team.getTeamOf(victim)) == 1){
+                Team.teams.remove(Team.getTeamOf(victim));
+            }
         } else {
             event.setDeathMessage("§c§l† §r" + victim.getDisplayName()+ " §c§lwas killed by " + attacker.getPlayerListName() + " §c§l†");
-            Team.getTeamOf(victim).join(Team.getLeadingTeamOf(attacker));
+            Team.getTeamOf(victim).join(Team.getTeamOf(attacker),Team.getLeadingTeamOf(attacker).getColor());
             // waiting 30 seconds
             BukkitRunnable task = new BukkitRunnable() {
                 @Override

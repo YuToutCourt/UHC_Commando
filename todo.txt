@@ -2,7 +2,8 @@ To fix :
     + A kill B ; B kill C ; C have the color of B but is in the team of A
     
 Todo :
-    - return void();
+    - if player die pve, il faut le remove de la team et si le joueur et tout seul alors remove la Team
+
 
 ------------------------------
 
