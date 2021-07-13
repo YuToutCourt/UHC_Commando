@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.UUID;
 
 import com.commando.uhc_commando.Commands.AlertCommand;
-import com.commando.uhc_commando.Commands.CreateSpawnCommand;
 import com.commando.uhc_commando.Commands.InventoryCommand;
 import com.commando.uhc_commando.Commands.RuleCommand;
 import com.commando.uhc_commando.Commands.StartCommand;
@@ -48,7 +47,6 @@ public final class UHC_Commando extends JavaPlugin {
         this.getCommand("alert").setExecutor(new AlertCommand());
         this.getCommand("rule").setExecutor(new RuleCommand());
         this.getCommand("start").setExecutor(new StartCommand(this));
-        this.getCommand("createSpawn").setExecutor(new CreateSpawnCommand(this));
         this.getCommand("inv").setExecutor(new InventoryCommand());
 
         PluginManager pm = this.getServer().getPluginManager();

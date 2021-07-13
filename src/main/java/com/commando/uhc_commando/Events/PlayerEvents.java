@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class PlayerEvents implements Listener {
 
@@ -32,7 +33,19 @@ public class PlayerEvents implements Listener {
         this.main.boards.add(this.main.createBoard(player));
 
         if(!TimerTasks.RUN) {
+            Material blockAtSpawn = this.main.WORLD.getBlockAt(this.main.WORLD.getSpawnLocation().getBlockX(),this.main.WORLD.getSpawnLocation().getBlockY()-1,this.main.WORLD.getSpawnLocation().getBlockZ()).getType();
+            if(!(blockAtSpawn.equals(Material.GLASS))){
+                // WAIT A BIT FOR THE CHUNCK TO BE LOADED
+                BukkitRunnable task = new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        createSpawn();
+                    }
+                };
+                task.runTaskLater(this.main, 20*1);
+            }
             player.teleport(this.main.WORLD.getSpawnLocation());
+            
         } else {
             if(!this.main.playersInTheParty.contains(player.getUniqueId()))
                 player.setGameMode(GameMode.SPECTATOR);
@@ -60,5 +73,24 @@ public class PlayerEvents implements Listener {
             event.setCancelled(true);
             return;
         }
+    }
+
+
+
+    private void createSpawn(){
+
+        Location spawn = this.main.WORLD.getSpawnLocation();
+
+        String createCube = "fill " + (spawn.getBlockX() - 10) + " " + (spawn.getBlockY() - 1) + " " + (spawn.getBlockZ() - 10);
+        createCube += " " + (spawn.getBlockX() + 10) + " " + (spawn.getBlockY() + 4) + " " + (spawn.getBlockZ() + 10);
+        createCube += " minecraft:glass";
+
+        String carveCube = "fill " + (spawn.getBlockX() - 9) + " " + (spawn.getBlockY()) + " " + (spawn.getBlockZ() - 9);
+        carveCube += " " + (spawn.getBlockX() + 9) + " " + (spawn.getBlockY() + 3) + " " + (spawn.getBlockZ() + 9);
+        carveCube += " minecraft:air";
+
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), createCube);
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), carveCube);
+
     }
 }

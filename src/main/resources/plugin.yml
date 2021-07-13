@@ -13,10 +13,6 @@ commands:
     description: Start the game
     usage: /start
     permission: perm.use
-  createSpawn:
-    description: Create the spawn plateform
-    usage: /createSpawn
-    permission: perm.use
   inv:
     description: See the inventory of a player (You can interact with it)
     usage: /inv <Pseudo>
