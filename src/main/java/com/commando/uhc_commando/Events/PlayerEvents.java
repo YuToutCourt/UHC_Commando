@@ -45,6 +45,7 @@ public class PlayerEvents implements Listener {
                 task.runTaskLater(this.main, 20*1);
             }
             player.teleport(this.main.WORLD.getSpawnLocation());
+            player.setGameMode(GameMode.ADVENTURE);
             
         } else {
             if(!this.main.playersInTheParty.contains(player.getUniqueId()))

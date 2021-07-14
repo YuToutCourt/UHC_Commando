@@ -138,7 +138,7 @@ public final class UHC_Commando extends JavaPlugin {
     }
 
     public FastBoard createBoard(Player player) {
-	    String SEPARATOR = ChatColor.RED + "--------------";
+	    String SEPARATOR = ChatColor.RED + "";
 		FastBoard board = new FastBoard(player);
         board.updateTitle(CONFIG.getString("ScoreboardTitle").replace("&", "§"));
 

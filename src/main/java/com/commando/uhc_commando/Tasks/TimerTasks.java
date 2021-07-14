@@ -79,7 +79,7 @@ public class TimerTasks extends BukkitRunnable {
 	public static String formatLine(String key, Object value, ChatColor cVal) {
 		ChatColor cKey = ChatColor.GOLD;
 		ChatColor cRst = ChatColor.RESET;
-		return cKey + key + cRst + " - " + cVal + value;
+		return cKey + key + cRst + " > " + cVal + value;
 	}
 
 	public static String formatLine(String key, Object value) {

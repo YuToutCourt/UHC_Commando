@@ -11,7 +11,7 @@ World: #✔️
   EnableFireSpreading: false # Stop the fire to spread (doFireTick gamerule) 
   BadWeather: false # Bad weather (rain) disabled if set to false 
 
-ScoreboardTitle: "UHC Commando" #✔️
+ScoreboardTitle: "§2UHC §lCommando" #✔️
 
 TabHealth: false # Show health in tab board ✔️
 DisableAchivements: true # Disable achievements during the game ✔️
