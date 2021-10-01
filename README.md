@@ -31,7 +31,7 @@ This mission can only be accomplished by **COMMANDO**
     # Start the game
     /start
 
-## In-game command 
+## In-game commands
 
     # Show the rule of the game at <page>
     /rule <1 -> 5>
