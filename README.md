@@ -4,7 +4,7 @@
 # UHC COMMANDO
 <img src="https://img.shields.io/badge/Java-Maven-brightgreen.svg?style=plastic">
 
-UCH Commando is a plugin for Minecraft 1.8.* servers. It allow for players to provide an additional game mode
+UCH Commando is a plugin for Minecraft 1.8.* servers. It allows players to provide an additional game mode
 
 
 
