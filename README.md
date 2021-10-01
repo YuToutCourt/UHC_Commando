@@ -1,6 +1,9 @@
 ![](https://raw.githubusercontent.com/Wongt8/UHC_Commando/master/img/UHCCommando.png "Banner")
 
 
+
+⚠️ THE PLUGIN IS NOT YET FINISHED ⚠️
+
 # UHC COMMANDO
 <img src="https://img.shields.io/badge/Java-Maven-brightgreen.svg?style=plastic">
 
