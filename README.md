@@ -9,7 +9,7 @@ UCH Commando is a plugin for Minecraft 1.8.* servers. It allows players to provi
 
 
 ## Introduction
-Prepare for the battle of a life !\
+Prepare for the battle of your life !\
 Build your own team by killing players ! Control your team and be the unique team in the game !\
 This mission can only be accomplished by **COMMANDO**
 
