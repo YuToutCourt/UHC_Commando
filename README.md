@@ -42,5 +42,5 @@ This mission can only be accomplished by **COMMANDO**
 
 ----
 
-Feel free to give your opinion on the plugin and on what it can be improved
+Feel free to give your opinion about the plugin and on what it can be improved
 
