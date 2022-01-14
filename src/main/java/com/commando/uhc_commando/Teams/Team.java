@@ -154,12 +154,18 @@ public class Team {
 
     
     public static int getLeadingTeamsAmount() {
-        int res = 0;
+        int size = 0;
         for(Team team : Team.teams) {
-            if(team.owner == null && team.leader != null) res ++;
+            if(team.getOwner() == null) size++;
         }
-        return res;
+        return size;
     }
+        // int res = 0;
+        // for(Team team : Team.teams) {
+        //     if(team.owner == null && team.leader != null) res ++;
+        // }
+        // return res;
+    // }
 
     @Override
     public int hashCode() {
