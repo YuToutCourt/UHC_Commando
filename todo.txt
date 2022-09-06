@@ -1,6 +1,6 @@
 To fix :
     + A kill B ; B kill C ; C have the color of B but is in the team of A
-    - On the scoreBoard the Your team if not descresing on death of a member of the team
+    - On the scoreBoard the line "Your team" not descresing on death of a member of the team
 Todo :
     - if player die pve, il faut le remove de la team et si le joueur et tout seul alors remove la Team
 
